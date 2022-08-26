@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
-import emojis from "../utils/emojis";
+import { emojis } from "../utils/emojis";
 import { Toggle } from "./Toggle";
 
 export const MainHeader: React.FC = () => {
@@ -33,7 +33,7 @@ const Container = styled.div`
 `;
 
 const Profile = styled.div`
-  color: ${(props) => props.theme.colors.white}
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const Welcome = styled.h3``;
