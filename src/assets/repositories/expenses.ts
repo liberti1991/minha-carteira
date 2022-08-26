@@ -2,7 +2,7 @@ export const expenses = [
   {id: 0, "description":"Pizza",                 "amount":"750.01", "type":"saída","frequency":"eventual",  "date":"2021-07-19"},
   {id: 1, "description":"Energia elétrica",      "amount":"150.55","type":"saída","frequency":"recorrente","date":"2019-01-10"},
   {id: 2, "description":"Água",                  "amount":"75.55", "type":"saída","frequency":"recorrente","date":"2020-01-15"},
-  {id: 3, "description": "Telefone",             "amount":"99.99", "type":"saída","frequency":"recorrente","date":"2020-01-23"},
+  {id: 3, "description": "Telefone",             "amount":"99.99", "type":"saída","frequency":"recorrente","date":"2022-01-23"},
   {id: 4, "description":"Plano de Saúde",        "amount":"300.00","type":"saída","frequency":"recorrente","date":"2020-01-23"},
   {id: 5, "description":"Compras do mês",        "amount":"625.78","type":"saída","frequency":"recorrente","date":"2020-01-23"},
   {id: 6, "description":"Lanche",                "amount":"45.70", "type":"saída","frequency":"eventual",  "date":"2020-01-23"},

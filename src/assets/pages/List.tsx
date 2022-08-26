@@ -11,7 +11,7 @@ import { expenses } from "../repositories/expenses";
 
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatDate } from "../utils/formatDate";
-import { months } from "../utils/Months";
+import { ListOfMonths } from "../utils/ListOfMonths";
 
 interface IData {
   id: number;
@@ -51,16 +51,14 @@ export const List: React.FC = () => {
         uniqueYears.push(year);
       }
     });
-    return uniqueYears.map((year, id) => {
+    return uniqueYears.map((item, id) => {
       return {
         id: id,
-        value: year,
-        label: year,
+        value: item,
+        label: item,
       };
     });
   }, [listData]);
-
-  console.log(years)
 
   useEffect(() => {
     const filteresDate = listData
@@ -83,10 +81,11 @@ export const List: React.FC = () => {
     dataSet(filteresDate);
   }, [listData, yearSelected, monthSelected]);
 
+  console.log(listData)
   return (
     <div>
       <ContentHeader title={paramsRoutes.title} lineColor={paramsRoutes.lineColor}>
-        <SelectInput options={months} onChange={(event) => monthSelectedSet(event.target.value)} defaulValue={monthSelected} />
+        <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(event.target.value)} defaulValue={monthSelected} />
         <SelectInput options={years} onChange={(event) => yearSelectedSet(event.target.value)} defaulValue={yearSelected} />
       </ContentHeader>
       <Filters>

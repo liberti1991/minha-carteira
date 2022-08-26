@@ -1,4 +1,4 @@
-export const months = [
+export const ListOfMonths = [
   { id: 0, value: "1", label: "Janeiro" },
   { id: 1, value: "2", label: "Fevereiro" },
   { id: 2, value: "3", label: "Março" },
