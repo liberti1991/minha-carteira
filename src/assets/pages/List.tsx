@@ -22,7 +22,7 @@ interface IData {
   tagColor: string;
 }
 
-export const List: React.FC = () => {
+export const List = () => {
   //stat dados
   const [data, dataSet] = useState<IData[]>([]);
 
@@ -61,14 +61,14 @@ export const List: React.FC = () => {
   }, [listData]);
 
   useEffect(() => {
-    const filteresDate = listData
+    const filteredDate = listData
       .filter((item) => {
         const date = new Date(item.date);
         const month = String(date.getMonth() + 1);
         const year = String(date.getFullYear());
         return month === monthSelected && year === yearSelected;
       })
-      .map((item) => {
+      const formattedDate = filteredDate.map((item) => {
         return {
           id: item.id,
           description: item.description,
@@ -78,10 +78,9 @@ export const List: React.FC = () => {
           tagColor: item.frequency === "recorrente" ? "#4e41f0" : "#e44c4e",
         };
       });
-    dataSet(filteresDate);
+    dataSet(formattedDate);
   }, [listData, yearSelected, monthSelected]);
 
-  console.log(listData)
   return (
     <div>
       <ContentHeader title={paramsRoutes.title} lineColor={paramsRoutes.lineColor}>
