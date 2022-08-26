@@ -1,34 +1,93 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+
 import { ContentHeader } from "../components/ContentHeader";
 import { HistoryFinanceCard } from "../components/HistoryFinanceCard";
 import { SelectInput } from "../components/SelectInput";
 
+import { gains } from "../repositories/gains";
+import { expenses } from "../repositories/expenses";
+
+import { formatCurrency } from "../utils/formatCurrency";
+import { formatDate } from "../utils/formatDate";
+import { months } from "../utils/Months";
+
+interface IData {
+  id: number;
+  description: string;
+  amountFormatted: string;
+  frequency: string;
+  dateFormatted: string;
+  tagColor: string;
+}
+
 export const List: React.FC = () => {
-  const months = [
-    { id: 0, value: "1", label: "Janeiro" },
-    { id: 1, value: "2", label: "Fevereiro" },
-    { id: 2, value: "3", label: "Março" },
-    { id: 3, value: "4", label: "Abril" },
-    { id: 4, value: "5", label: "Maio" },
-    { id: 5, value: "6", label: "Junho" },
-    { id: 6, value: "7", label: "Julho" },
-    { id: 7, value: "8", label: "Agosto" },
-    { id: 8, value: "9", label: "Setembro" },
-    { id: 9, value: "10", label: "Outubro" },
-    { id: 10, value: "11", label: "Novembro" },
-    { id: 11, value: "12", label: "Dezembro" },
-  ];
-  const years = [
-    { id: 1, value: 2022, label: 2022 },
-    { id: 2, value: 2023, label: 2023 },
-    { id: 3, value: 2024, label: 2024 },
-  ];
+  //stat dados
+  const [data, dataSet] = useState<IData[]>([]);
+
+  const [monthSelected, monthSelectedSet] = useState<string>(String(new Date().getMonth() + 1));
+  const [yearSelected, yearSelectedSet] = useState<string>(String(new Date().getFullYear()));
+
+  // pega o parametro da rota do navegador
+  const { type } = useParams();
+
+  const paramsRoutes = useMemo(() => {
+    return type === "entry-balance" ? { title: "Entradas", lineColor: "#f7931b" } : { title: "Saídas", lineColor: "#e44c4e" };
+  }, [type]);
+
+  const listData = useMemo(() => {
+    return type === "entry-balance" ? gains : expenses;
+  }, [type]);
+
+  const years = useMemo(() => {
+    let uniqueYears: number[] = [];
+
+    listData.forEach((item) => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+
+      if (!uniqueYears.includes(year)) {
+        uniqueYears.push(year);
+      }
+    });
+    return uniqueYears.map((year, id) => {
+      return {
+        id: id,
+        value: year,
+        label: year,
+      };
+    });
+  }, [listData]);
+
+  console.log(years)
+
+  useEffect(() => {
+    const filteresDate = listData
+      .filter((item) => {
+        const date = new Date(item.date);
+        const month = String(date.getMonth() + 1);
+        const year = String(date.getFullYear());
+        return month === monthSelected && year === yearSelected;
+      })
+      .map((item) => {
+        return {
+          id: item.id,
+          description: item.description,
+          amountFormatted: formatCurrency(Number(item.amount)),
+          frequency: item.frequency,
+          dateFormatted: formatDate(item.date),
+          tagColor: item.frequency === "recorrente" ? "#4e41f0" : "#e44c4e",
+        };
+      });
+    dataSet(filteresDate);
+  }, [listData, yearSelected, monthSelected]);
+
   return (
     <div>
-      <ContentHeader title="Saídas" lineColor="#e44c4e">
-        <SelectInput options={months} />
-        <SelectInput options={years} />
+      <ContentHeader title={paramsRoutes.title} lineColor={paramsRoutes.lineColor}>
+        <SelectInput options={months} onChange={(event) => monthSelectedSet(event.target.value)} defaulValue={monthSelected} />
+        <SelectInput options={years} onChange={(event) => yearSelectedSet(event.target.value)} defaulValue={yearSelected} />
       </ContentHeader>
       <Filters>
         <button type="button" className="tag-filter tag-filter-recurrent ">
@@ -39,21 +98,9 @@ export const List: React.FC = () => {
         </button>
       </Filters>
       <Content>
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
-        <HistoryFinanceCard tagColor="#e44c4e" title="Conta de Luz" subtitle="26/08/2022" amount="R$ 130,00" />
+        {data.map((item) => (
+          <HistoryFinanceCard key={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} />
+        ))}
       </Content>
     </div>
   );
@@ -86,11 +133,11 @@ const Filters = styled.div`
   }
 
   .tag-filter-recurrent::after {
-    border-bottom: 10px solid ${(props) => props.theme.colors.warning};
+    border-bottom: 10px solid ${(props) => props.theme.colors.success};
   }
 
   .tag-filter-eventual::after {
-    border-bottom: 10px solid ${(props) => props.theme.colors.success};
+    border-bottom: 10px solid ${(props) => props.theme.colors.warning};
   }
 `;
 

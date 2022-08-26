@@ -57,8 +57,13 @@ const Card = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  > div {
+   > div {
     display: flex;
     flex-direction: column;
+
+    span {
+      font-weight: bold;
+      font-size: 18px;
+    }
   }
 `;

@@ -7,11 +7,13 @@ interface ISelectIputProprs {
     label: string | number;
     id:number;
   }[];
+  onChange(event: React.ChangeEvent<HTMLSelectElement>): void | undefined;
+  defaulValue?: string | number;
 }
 
-export const SelectInput: React.FC<ISelectIputProprs> = ({ options }) => {
+export const SelectInput: React.FC<ISelectIputProprs> = ({ options, onChange, defaulValue}) => {
   return (
-    <ContainerSelect>
+    <ContainerSelect onChange={onChange} defaultValue={defaulValue}>
       {options.map((option) => (
         <option key={option.id} value={option.value}>
           {option.label}

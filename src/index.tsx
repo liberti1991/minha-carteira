@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import { Layout } from "./assets/components/Layout";
-// import { Dashboard } from "./assets/pages/Dashboard";
-import { List } from "./assets/pages/List";
+import { MyRoutes } from "./assets/routes/MyRoutes";
 import GlobalStyles from "./assets/styles/createGlobalStyle";
 
 // import { ThemeProvider } from './hooks/theme';
@@ -15,13 +14,10 @@ import {dark} from "./assets/styles/dark";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <ThemeProvider theme={dark}>
       <GlobalStyles />
-      <Layout>
-        {/* <Dashboard /> */}
-        <List />
-      </Layout>
+        <MyRoutes />
     </ThemeProvider>
-  </React.StrictMode>,
+  </BrowserRouter>,
 );

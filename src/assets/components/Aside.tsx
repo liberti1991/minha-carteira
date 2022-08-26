@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import logo from "../svg/logo.svg";
 import { MdDashboard, MdArrowDownward,  MdExitToApp, MdArrowUpward } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 
 export const Aside: React.FC = () => {
   return (
@@ -12,10 +13,10 @@ export const Aside: React.FC = () => {
         <h4>Minha Carteira</h4>
       </Header>
       <Menu>
-        <a href="/"><MdDashboard />Dashbord</a>
-        <a href="/"><MdArrowUpward />Entradas</a>
-        <a href="/"><MdArrowDownward />Saídas</a>
-        <a href="/"><MdExitToApp />Sair</a>
+        <NavLink to="/" ><MdDashboard />Dashbord</NavLink>
+        <NavLink to='/list/entry-balance' ><MdArrowUpward />Entradas</NavLink>
+        <NavLink to='/list/exit-balance' ><MdArrowDownward />Saídas</NavLink>
+        <NavLink to='#' ><MdExitToApp />Sair</NavLink>
       </Menu>
     </Container>
   );
