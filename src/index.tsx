@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
 import { Layout } from "./assets/components/Layout";
-import { Dashboard } from "./assets/pages/Dashboard";
+// import { Dashboard } from "./assets/pages/Dashboard";
 import { List } from "./assets/pages/List";
 import GlobalStyles from "./assets/styles/createGlobalStyle";
 
@@ -11,7 +11,7 @@ import GlobalStyles from "./assets/styles/createGlobalStyle";
 // import { AuthProvider } from './hooks/auth';
 
 import dark from "./assets/styles/dark";
-import light from "./assets/styles/light";
+// import light from "./assets/styles/light";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
