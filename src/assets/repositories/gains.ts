@@ -7,7 +7,7 @@ export const gains = [
   {id: 5, "description": "Salário",     "amount": "2500.25", "type": "entrada", "frequency": "recorrente", "date": "2022-06-10" }, 
   {id: 6, "description": "Salário",     "amount": "2500.18", "type": "entrada", "frequency": "recorrente", "date": "2022-07-10" }, 
   {id: 7, "description": "Salário",     "amount": "2500.15", "type": "entrada", "frequency": "recorrente", "date": "2022-08-10" }, 
-  {id: 8, "description": "Salário",     "amount": "2500.12", "type": "entrada", "frequency": "recorrente", "date": "2022-09-10" }, 
+  {id: 8, "description": "Salário",     "amount": "750.99", "type": "entrada", "frequency": "recorrente", "date": "2022-11-10" }, 
   {id: 9, "description": "Salário",     "amount": "2500.00", "type": "entrada", "frequency": "recorrente", "date": "2022-01-10" },
   ]
   
