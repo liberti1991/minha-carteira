@@ -23,11 +23,14 @@ interface IData {
 }
 
 export const List = () => {
-  //stat dados
+  //state DB
   const [data, dataSet] = useState<IData[]>([]);
-
+  // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<string>(String(new Date().getMonth() + 1));
+  // state anos
   const [yearSelected, yearSelectedSet] = useState<string>(String(new Date().getFullYear()));
+  // state of buttons
+  const [frequencyFilterSelected, setFrequencyFilterSelected] = useState(["recorrente", "eventual"]);
 
   // pega o parametro da rota do navegador
   const { type } = useParams();
@@ -60,15 +63,26 @@ export const List = () => {
     });
   }, [listData]);
 
+  const handleFrequencyClick = (frequency: string) => {
+    const alreadySelected = frequencyFilterSelected.findIndex((item) => item === frequency);
+
+    if (alreadySelected >= 0) {
+      const filtered = frequencyFilterSelected.filter((item) => item !== frequency);
+      setFrequencyFilterSelected(filtered);
+    } else {
+      setFrequencyFilterSelected((previous) => [...previous, frequency]);
+    }
+  };
+
   useEffect(() => {
     const filteredDate = listData
       .filter((item) => {
         const date = new Date(item.date);
         const month = String(date.getMonth() + 1);
         const year = String(date.getFullYear());
-        return month === monthSelected && year === yearSelected;
+        return month === monthSelected && year === yearSelected && frequencyFilterSelected.includes(item.frequency);
       })
-      const formattedDate = filteredDate.map((item) => {
+      .map((item) => {
         return {
           id: item.id,
           description: item.description,
@@ -78,8 +92,8 @@ export const List = () => {
           tagColor: item.frequency === "recorrente" ? "#4e41f0" : "#e44c4e",
         };
       });
-    dataSet(formattedDate);
-  }, [listData, yearSelected, monthSelected]);
+    dataSet(filteredDate);
+  }, [listData, yearSelected, monthSelected, frequencyFilterSelected]);
 
   return (
     <div>
@@ -88,10 +102,10 @@ export const List = () => {
         <SelectInput options={years} onChange={(event) => yearSelectedSet(event.target.value)} defaulValue={yearSelected} />
       </ContentHeader>
       <Filters>
-        <button type="button" className="tag-filter tag-filter-recurrent ">
-          Recorretes
+        <button type="button" className={`tag-filter tag-filter-recurrent ${frequencyFilterSelected.includes("recorrente") && "tag-active"}`} onClick={() => handleFrequencyClick("recorrente")}>
+          Recorrentes
         </button>
-        <button type="button" className="tag-filter tag-filter-eventual">
+        <button type="button" className={`tag-filter tag-filter-eventual ${frequencyFilterSelected.includes("eventual") && "tag-active"}`} onClick={() => handleFrequencyClick("eventual")}>
           Eventuais
         </button>
       </Filters>
@@ -116,6 +130,7 @@ const Filters = styled.div`
     color: ${(props) => props.theme.colors.white};
     margin-bottom: 30px;
     transition: all 0.3s;
+    opacity: 0.4;
 
     :hover {
       opacity: 0.7;
@@ -136,6 +151,10 @@ const Filters = styled.div`
 
   .tag-filter-eventual::after {
     border-bottom: 10px solid ${(props) => props.theme.colors.warning};
+  }
+
+  .tag-active {
+    opacity: 1;
   }
 `;
 
