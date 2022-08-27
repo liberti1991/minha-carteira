@@ -30,23 +30,19 @@ export const List = () => {
   // state anos
   const [yearSelected, yearSelectedSet] = useState<string>(String(new Date().getFullYear()));
   // state of buttons
-  const [frequencyFilterSelected, setFrequencyFilterSelected] = useState(["recorrente", "eventual"]);
+  const [filterButtonSelected, filterButtonSelectedSet] = useState<string[]>(["recorrente", "eventual"]);
 
   // pega o parametro da rota do navegador
   const { type } = useParams();
 
   const paramsRoutes = useMemo(() => {
-    return type === "entry-balance" ? { title: "Entradas", lineColor: "#f7931b" } : { title: "Saídas", lineColor: "#e44c4e" };
-  }, [type]);
-
-  const listData = useMemo(() => {
-    return type === "entry-balance" ? gains : expenses;
+    return type === "entry-balance" ? { title: "Entradas", lineColor: "#f7931b", date: gains } : { title: "Saídas", lineColor: "#e44c4e", date: expenses };
   }, [type]);
 
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
-    listData.forEach((item) => {
+    paramsRoutes.date.forEach((item) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
 
@@ -61,26 +57,26 @@ export const List = () => {
         label: item,
       };
     });
-  }, [listData]);
+  }, [paramsRoutes]);
 
   const handleFrequencyClick = (frequency: string) => {
-    const alreadySelected = frequencyFilterSelected.findIndex((item) => item === frequency);
+    const alreadySelected = filterButtonSelected.findIndex((item) => item === frequency);
 
     if (alreadySelected >= 0) {
-      const filtered = frequencyFilterSelected.filter((item) => item !== frequency);
-      setFrequencyFilterSelected(filtered);
+      const filtered = filterButtonSelected.filter((item) => item !== frequency);
+      filterButtonSelectedSet(filtered);
     } else {
-      setFrequencyFilterSelected((previous) => [...previous, frequency]);
+      filterButtonSelectedSet((previous) => [...previous, frequency]);
     }
   };
 
   useEffect(() => {
-    const filteredDate = listData
+    const filteredDate = paramsRoutes.date
       .filter((item) => {
         const date = new Date(item.date);
         const month = String(date.getMonth() + 1);
         const year = String(date.getFullYear());
-        return month === monthSelected && year === yearSelected && frequencyFilterSelected.includes(item.frequency);
+        return month === monthSelected && year === yearSelected && filterButtonSelected.includes(item.frequency);
       })
       .map((item) => {
         return {
@@ -93,7 +89,7 @@ export const List = () => {
         };
       });
     dataSet(filteredDate);
-  }, [listData, yearSelected, monthSelected, frequencyFilterSelected]);
+  }, [paramsRoutes, yearSelected, monthSelected, filterButtonSelected]);
 
   return (
     <div>
@@ -102,10 +98,10 @@ export const List = () => {
         <SelectInput options={years} onChange={(event) => yearSelectedSet(event.target.value)} defaulValue={yearSelected} />
       </ContentHeader>
       <Filters>
-        <button type="button" className={`tag-filter tag-filter-recurrent ${frequencyFilterSelected.includes("recorrente") && "tag-active"}`} onClick={() => handleFrequencyClick("recorrente")}>
+        <button type="button" className={`tag-filter tag-filter-recurrent ${filterButtonSelected.includes("recorrente") && "tag-active"}`} onClick={() => handleFrequencyClick("recorrente")}>
           Recorrentes
         </button>
-        <button type="button" className={`tag-filter tag-filter-eventual ${frequencyFilterSelected.includes("eventual") && "tag-active"}`} onClick={() => handleFrequencyClick("eventual")}>
+        <button type="button" className={`tag-filter tag-filter-eventual ${filterButtonSelected.includes("eventual") && "tag-active"}`} onClick={() => handleFrequencyClick("eventual")}>
           Eventuais
         </button>
       </Filters>
