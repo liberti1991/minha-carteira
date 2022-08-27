@@ -26,26 +26,25 @@ export const List = () => {
   //state DB
   const [data, dataSet] = useState<IData[]>([]);
   // state meses do ano
-  const [monthSelected, monthSelectedSet] = useState<string>(String(new Date().getMonth() + 1));
+  const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
   // state anos
-  const [yearSelected, yearSelectedSet] = useState<string>(String(new Date().getFullYear()));
+  const [yearSelected, yearSelectedSet] = useState<number>(new Date().getFullYear());
   // state of buttons
   const [filterButtonSelected, filterButtonSelectedSet] = useState<string[]>(["recorrente", "eventual"]);
 
-  // pega o parametro da rota do navegador
+  // pega o parametro da rota do navegador && on dados do BD
   const { type } = useParams();
-
   const paramsRoutes = useMemo(() => {
-    return type === "entry-balance" ? { title: "Entradas", lineColor: "#f7931b", date: gains } : { title: "Saídas", lineColor: "#e44c4e", date: expenses };
+    return type === "entry-balance" ? { title: "Entradas", lineColor: "#4e41f0", date: gains } : { title: "Saídas", lineColor: "#e44c4e", date: expenses };
   }, [type]);
-
+  // filtra somente os anos que existem no db assim fica dinamica o select
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
     paramsRoutes.date.forEach((item) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
-
+      
       if (!uniqueYears.includes(year)) {
         uniqueYears.push(year);
       }
@@ -58,7 +57,7 @@ export const List = () => {
       };
     });
   }, [paramsRoutes]);
-
+  // func para filtro nos botoes 
   const handleFrequencyClick = (frequency: string) => {
     const alreadySelected = filterButtonSelected.findIndex((item) => item === frequency);
 
@@ -74,8 +73,8 @@ export const List = () => {
     const filteredDate = paramsRoutes.date
       .filter((item) => {
         const date = new Date(item.date);
-        const month = String(date.getMonth() + 1);
-        const year = String(date.getFullYear());
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
         return month === monthSelected && year === yearSelected && filterButtonSelected.includes(item.frequency);
       })
       .map((item) => {
@@ -94,8 +93,8 @@ export const List = () => {
   return (
     <div>
       <ContentHeader title={paramsRoutes.title} lineColor={paramsRoutes.lineColor}>
-        <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(event.target.value)} defaulValue={monthSelected} />
-        <SelectInput options={years} onChange={(event) => yearSelectedSet(event.target.value)} defaulValue={yearSelected} />
+        <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(Number(event.target.value))} defaulValue={monthSelected} />
+        <SelectInput options={years} onChange={(event) => yearSelectedSet(Number(event.target.value))} defaulValue={yearSelected} />
       </ContentHeader>
       <Filters>
         <button type="button" className={`tag-filter tag-filter-recurrent ${filterButtonSelected.includes("recorrente") && "tag-active"}`} onClick={() => handleFrequencyClick("recorrente")}>
@@ -114,7 +113,7 @@ export const List = () => {
   );
 };
 
-const Filters = styled.div`
+const Filters = styled.header`
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -154,7 +153,7 @@ const Filters = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled.main`
   display: flex;
   flex-direction: column;
   gap: 10px;

@@ -5,7 +5,7 @@ import { Layout } from "../components/Layout";
 import { Dashboard } from "../pages/Dashboard";
 import { List } from "../pages/List";
 
-export const MyRoutes: React.FC = () => (
+export const MyRoutes = () => (
   <Layout>
     <Routes>
       <Route index element={<Dashboard />} />
