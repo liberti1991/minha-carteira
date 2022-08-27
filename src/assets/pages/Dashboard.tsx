@@ -10,15 +10,6 @@ import { expenses } from "../repositories/expenses";
 
 import { ListOfMonths } from "../utils/ListOfMonths";
 
-interface IData {
-  id: number;
-  description: string;
-  amountFormatted: string;
-  frequency: string;
-  dateFormatted: string;
-  tagColor: string;
-}
-
 export const Dashboard: React.FC = () => {
   // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
