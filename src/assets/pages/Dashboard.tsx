@@ -6,6 +6,7 @@ import { SelectInput } from "../components/SelectInput";
 import { WalletBox } from "../components/WalletBox";
 import { MessageBox } from "../components/MessageBox";
 import { GraficOne } from "../components/GraficOne";
+import { GraficTwo } from "../components/GraficTwo";
 
 import { gains } from "../repositories/gains";
 import { expenses } from "../repositories/expenses";
@@ -73,7 +74,7 @@ export const Dashboard: React.FC = () => {
     return total;
   }, [monthSelected, yearSelected]);
 
-  //func balanço com retornos
+  //func balanço
   const totalBalance = useMemo(() => {
     return totalGains - totalExpenses;
   }, [totalGains, totalExpenses]);
@@ -125,10 +126,50 @@ export const Dashboard: React.FC = () => {
         color: "#e44c4e",
       },
     ];
-    
-    return percentage;
 
+    return percentage;
   }, [totalGains, totalExpenses]);
+
+  //func para second grafic
+  const graficTwo = useMemo(() => {
+    return ListOfMonths.map((item) => {
+      let amountEntry = 0;
+      gains.forEach((gain) => {
+        const date = new Date(gain.date);
+        const gainMonth = date.getMonth();
+        const gainYear = date.getFullYear();
+
+        if (gainMonth === item.id && gainYear === yearSelected) {
+          amountEntry += Number(gain.amount);
+        }
+      });
+
+      let amountOutput = 0;
+      expenses.forEach((expense) => {
+        const date = new Date(expense.date);
+        const expenseMonth = date.getMonth();
+        const expenseYear = date.getFullYear();
+
+        if (expenseMonth === item.id && expenseYear === yearSelected) {
+          amountOutput += Number(expense.amount);
+        }
+      });
+
+      return {
+        monthNumber: item.id,
+        month: item.label.substring(0, 3),
+        amountEntry,
+        amountOutput,
+      };
+    });
+
+    // retornar essa função quando tiver dados verdadeiros
+    // .filter((item) => {
+    //   const currentMonth = new Date().getMonth();
+    //   const currentYear = new Date().getFullYear();
+    //   return (yearSelected === currentYear && item.monthNumber <= currentMonth) || yearSelected < currentYear;
+    // });
+  }, [yearSelected]);
 
   return (
     <>
@@ -146,12 +187,11 @@ export const Dashboard: React.FC = () => {
         <GraficOne relationExpensesVersusGains={relationExpensesVersusGains} />
       </SectionBox>
       <SectionGraficTwo>
-
+        <GraficTwo data={graficTwo} lineColorAmountEntry="#f7931b" lineColorAmountOutput="#e44c4e" />
       </SectionGraficTwo>
     </>
   );
 };
-
 
 const SectionWallet = styled.section`
   display: grid;
@@ -166,6 +206,4 @@ const SectionBox = styled.section`
   margin: 20px 0;
 `;
 
-const SectionGraficTwo = styled.section`
-
-`;
+const SectionGraficTwo = styled.section``;

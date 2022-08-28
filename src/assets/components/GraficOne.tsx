@@ -22,7 +22,7 @@ export const GraficOne: React.FC<IrelationExpensesVersusGains> = ({ relationExpe
       <LegendContainer>
         {relationExpensesVersusGains.map((item) => (
           <Legend key={item.id} color={item.color}>
-            <p>{item.percent}</p>
+            <p>{item.percent}%</p>
             <span>{item.name}</span>
           </Legend>
         ))}
