@@ -14,8 +14,8 @@ export const MainHeader: React.FC = () => {
     <Container>
       <Toggle />
       <Profile>
-        <Welcome>Olá, {emoji}</Welcome>
-        <UserName>Rodrigo Liberti</UserName>
+        <h3>Olá, {emoji}</h3>
+        <span>Rodrigo Liberti</span>
       </Profile>
     </Container>
   );
@@ -24,7 +24,6 @@ export const MainHeader: React.FC = () => {
 const Container = styled.div`
   grid-area: mainHeader;
   background-color: ${(props) => props.theme.colors.secondary};
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,6 +34,3 @@ const Container = styled.div`
 const Profile = styled.div`
   color: ${(props) => props.theme.colors.white};
 `;
-
-const Welcome = styled.h3``;
-const UserName = styled.span``;

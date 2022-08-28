@@ -56,8 +56,8 @@ const SideLeft = styled.aside`
     margin-bottom: 20px;
   }
 `;
+
 const LegendContainer = styled.ul`
-  list-style: none;
   height: 160px;
   padding-right: 15px;
   overflow-y: scroll;
@@ -75,6 +75,7 @@ const LegendContainer = styled.ul`
     background-color: ${(props) => props.theme.colors.tertiary};
   }
 `;
+
 const Legend = styled.li<ILegendProps>`
   display: flex;
   align-items: center;
@@ -91,6 +92,7 @@ const Legend = styled.li<ILegendProps>`
     text-align: center;
   }
 `;
+
 const SideRight = styled.main`
   width: 100%;
 `;

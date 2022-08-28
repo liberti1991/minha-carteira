@@ -25,10 +25,13 @@ interface IData {
 export const List = () => {
   //state DB
   const [data, dataSet] = useState<IData[]>([]);
+
   // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
+
   // state anos
   const [yearSelected, yearSelectedSet] = useState<number>(new Date().getFullYear());
+
   // state of buttons
   const [filterButtonSelected, filterButtonSelectedSet] = useState<string[]>(["recorrente", "eventual"]);
 
@@ -37,6 +40,7 @@ export const List = () => {
   const paramsRoutes = useMemo(() => {
     return type === "entry-balance" ? { title: "Entradas", lineColor: "#4e41f0", date: gains } : { title: "Saídas", lineColor: "#e44c4e", date: expenses };
   }, [type]);
+
   // filtra somente os anos que existem no db assim fica dinamica o select
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
@@ -44,7 +48,7 @@ export const List = () => {
     paramsRoutes.date.forEach((item) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
-      
+
       if (!uniqueYears.includes(year)) {
         uniqueYears.push(year);
       }
@@ -57,7 +61,7 @@ export const List = () => {
       };
     });
   }, [paramsRoutes]);
-  // func para filtro nos botoes 
+  // func para filtro nos botoes
   const handleFrequencyClick = (frequency: string) => {
     const alreadySelected = filterButtonSelected.findIndex((item) => item === frequency);
 

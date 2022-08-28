@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Toggle: React.FC = () => {
-  return (
-    <Container>
-      <ToggleLabel>Dark</ToggleLabel>
-      <ToggleBtn>
-        <label>
-          <input type="checkbox" onChange={()=>console.log('mudei')}/>
-          <span></span>
-        </label>
-      </ToggleBtn>
-      <ToggleLabel>Light</ToggleLabel>
-    </Container>
-  );
-};
+export const Toggle: React.FC = () => (
+  <Container>
+    <ToggleLabel>Dark</ToggleLabel>
+    <ToggleBtn>
+      <label>
+        <input type="checkbox" onChange={() => console.log("mudei")} />
+        <span></span>
+      </label>
+    </ToggleBtn>
+    <ToggleLabel>Light</ToggleLabel>
+  </Container>
+);
 
 const Container = styled.div`
   display: flex;
@@ -22,7 +20,7 @@ const Container = styled.div`
 `;
 
 const ToggleLabel = styled.span`
-color: ${props => props.theme.colors.white}
+  color: ${(props) => props.theme.colors.white};
 `;
 
 const ToggleBtn = styled.div`
@@ -54,6 +52,7 @@ const ToggleBtn = styled.div`
   input:checked ~ span {
     background-color: #d8dbe0;
   }
+
   span::before {
     content: "";
     position: absolute;

@@ -12,24 +12,22 @@ interface ITagProps {
   color: string;
 }
 
-export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, title, subtitle, amount }) => {
-  return (
-    <Container>
-      <Tag color={tagColor}></Tag>
-      <Card>
-        <div>
-          <span>{title}</span>
-          <small>{subtitle}</small>
-        </div>
-        <h3>{amount}</h3>
-      </Card>
-    </Container>
-  );
-};
+export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, title, subtitle, amount }) => (
+  <Container>
+    <Tag color={tagColor}></Tag>
+    <Card>
+      <div>
+        <span>{title}</span>
+        <small>{subtitle}</small>
+      </div>
+      <h3>{amount}</h3>
+    </Card>
+  </Container>
+);
 
 const Container = styled.li`
   background-color: ${(props) => props.theme.colors.tertiary};
-  list-style: none;
+  
   border-radius: 5px;
   padding: 10px 15px 10px 25px;
   position: relative;
@@ -57,7 +55,7 @@ const Card = styled.div`
   justify-content: space-between;
   align-items: center;
 
-   > div {
+  > div {
     display: flex;
     flex-direction: column;
 

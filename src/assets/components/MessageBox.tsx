@@ -8,22 +8,20 @@ interface IMessageBox {
   icon: string;
 }
 
-export const MessageBox: React.FC<IMessageBox> = ({ title, description, footerText, icon }) => {
-  return (
-    <Container>
-      <header>
-        <h1>
-          {title}
-          <img src={icon} alt={title} />
-        </h1>
-        <p>{description}</p>
-      </header>
-      <footer>
-        <span>{footerText}</span>
-      </footer>
-    </Container>
-  );
-};
+export const MessageBox: React.FC<IMessageBox> = ({ title, description, footerText, icon }) => (
+  <Container>
+    <header>
+      <h1>
+        {title}
+        <img src={icon} alt={title} />
+      </h1>
+      <p>{description}</p>
+    </header>
+    <footer>
+      <span>{footerText}</span>
+    </footer>
+  </Container>
+);
 
 const Container = styled.div`
   height: 260px;
@@ -39,11 +37,14 @@ const Container = styled.div`
     > h1 {
       display: flex;
       align-items: center;
+      margin-bottom: 15px;
       gap: 10px;
+      
       > img {
         width: 35px;
       }
     }
+
     > p {
       font-size: 18px;
     }

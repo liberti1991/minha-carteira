@@ -7,6 +7,7 @@ import { WalletBox } from "../components/WalletBox";
 import { MessageBox } from "../components/MessageBox";
 import { GraficOne } from "../components/GraficOne";
 import { GraficTwo } from "../components/GraficTwo";
+import { GraficthreeAndFourCard } from "../components/GraficthreeAndFourCard";
 
 import { gains } from "../repositories/gains";
 import { expenses } from "../repositories/expenses";
@@ -16,10 +17,12 @@ import { ListOfMonths } from "../utils/ListOfMonths";
 import happySvg from "../svg/happy.svg";
 import sadSvg from "../svg/sad.svg";
 import grinningSvg from "../svg/grinning.svg";
+import opsSvg from "../svg/ops.svg";
 
 export const Dashboard: React.FC = () => {
   // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
+
   // state anos
   const [yearSelected, yearSelectedSet] = useState<number>(new Date().getFullYear());
 
@@ -79,8 +82,16 @@ export const Dashboard: React.FC = () => {
     return totalGains - totalExpenses;
   }, [totalGains, totalExpenses]);
 
+  // mensagens de erro no card 
   const message = useMemo(() => {
-    if (totalBalance < 0) {
+    if (totalGains === 0 && totalExpenses === 0) {
+      return {
+        title: "Ops!",
+        description: "Neste mês, Não há registros de entradas ou saídas.",
+        footerText: "Parece que você não fez nenhum registro no mês e ano selecionado.",
+        icon: opsSvg,
+      };
+    } else if (totalBalance < 0) {
       return {
         title: "Que Triste!",
         description: "Neste mês, você gastou mais do que deveria.",
@@ -102,27 +113,27 @@ export const Dashboard: React.FC = () => {
         icon: happySvg,
       };
     }
-  }, [totalBalance]);
+  }, [totalBalance, totalGains, totalExpenses]);
 
   // func para ver as porcentagens de gastos e recebidos
   const relationExpensesVersusGains = useMemo(() => {
     const total = totalGains + totalExpenses;
-    const PercentGains = (totalGains / total) * 100;
-    const PercentExpenses = (totalExpenses / total) * 100;
+    const PercentGains = Number(((totalGains / total) * 100).toFixed(1));
+    const PercentExpenses = Number(((totalExpenses / total) * 100).toFixed(1));
 
     const percentage = [
       {
         id: 1,
         name: "Entradas",
         value: totalGains,
-        percent: Number(PercentGains.toFixed(1)),
+        percent: PercentGains ? PercentGains : 0,
         color: "#f7931b",
       },
       {
         id: 2,
         name: "Saídas",
         value: totalExpenses,
-        percent: Number(PercentExpenses.toFixed(1)),
+        percent: PercentExpenses ? PercentExpenses : 0,
         color: "#e44c4e",
       },
     ];
@@ -171,6 +182,89 @@ export const Dashboard: React.FC = () => {
     // });
   }, [yearSelected]);
 
+  // func para verificar gastos eventuais vs recorrentes
+  const graficThreeExpenses = useMemo(() => {
+    let amountRecurrent = 0;
+    let amountEventual = 0;
+
+    expenses
+      .filter((expense) => {
+        const date = new Date(expense.date);
+        const yaer = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        return month === monthSelected && yaer === yearSelected;
+      })
+      .forEach((expense) => {
+        if (expense.frequency === "recorrente") return (amountRecurrent += Number(expense.amount));
+
+        if (expense.frequency === "eventual") return (amountEventual += Number(expense.amount));
+      });
+
+    const total = amountRecurrent + amountEventual;
+    const percentRecurrent = Number(((amountRecurrent / total) * 100).toFixed(1));
+    const percentEventual = Number(((amountEventual / total) * 100).toFixed(1));
+
+    return [
+      {
+        id: 1,
+        name: "Recorrentes",
+        amount: amountRecurrent,
+        percent: percentRecurrent ? percentRecurrent : 0,
+        color: "#f7931b",
+      },
+      {
+        id: 2,
+        name: "Eventuais",
+        amount: amountEventual,
+        percent: percentEventual ? percentEventual : 0,
+        color: "#e44c4e",
+      },
+    ];
+  }, [monthSelected, yearSelected]);
+
+  // func para verificar Ganhos eventuais vs recorrentes
+  const graficThreeGains = useMemo(() => {
+    let amountRecurrent = 0;
+    let amountEventual = 0;
+
+    gains
+      .filter((gain) => {
+        const date = new Date(gain.date);
+        const yaer = date.getFullYear();
+        const month = date.getMonth() + 1;
+
+        return month === monthSelected && yaer === yearSelected;
+      })
+      .forEach((gain) => {
+        if (gain.frequency === "recorrente") return (amountRecurrent += Number(gain.amount));
+
+        if (gain.frequency === "eventual") return (amountEventual += Number(gain.amount));
+      });
+
+    const total = amountRecurrent + amountEventual;
+
+    const percentRecurrent = Number(((amountRecurrent / total) * 100).toFixed(1));
+    const percentEventual = Number(((amountEventual / total) * 100).toFixed(1));
+
+    return [
+      {
+        id: 1,
+        name: "Recorrentes",
+        amount: amountRecurrent,
+        percent: percentRecurrent ? percentRecurrent : 0,
+        color: "#f7931b",
+      },
+      {
+        id: 2,
+        name: "Eventuais",
+        amount: amountEventual,
+        percent: percentEventual ? percentEventual : 0,
+        color: "#e44c4e",
+      },
+    ];
+  }, [monthSelected, yearSelected]);
+
   return (
     <>
       <ContentHeader title="Dashboard" lineColor="#f7931b">
@@ -189,6 +283,10 @@ export const Dashboard: React.FC = () => {
       <SectionGraficTwo>
         <GraficTwo data={graficTwo} lineColorAmountEntry="#f7931b" lineColorAmountOutput="#e44c4e" />
       </SectionGraficTwo>
+      <SectionGraficThree>
+        <GraficthreeAndFourCard title="Saídas" date={graficThreeExpenses} />
+        <GraficthreeAndFourCard title="Entradas" date={graficThreeGains} />
+      </SectionGraficThree>
     </>
   );
 };
@@ -206,4 +304,12 @@ const SectionBox = styled.section`
   margin: 20px 0;
 `;
 
-const SectionGraficTwo = styled.section``;
+const SectionGraficTwo = styled.section`
+  margin-bottom: 20px;
+`;
+
+const SectionGraficThree = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+`;

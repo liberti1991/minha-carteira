@@ -24,6 +24,7 @@ export const WalletBox: React.FC<IWalletBoxProps> = ({ title, amount, footerLabe
     else if (icon === "arromDown") return arrowDownSvg;
     else return arrowUpSvg;
   }, [icon]);
+
   return (
     <Container color={color}>
       <span>{title}</span>

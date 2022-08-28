@@ -11,21 +11,18 @@ interface IContainerProps {
   lineColor: string;
 }
 
-export const ContentHeader: React.FC<IContentHeaderProps> = ({ title, lineColor, children }) => {
-  return (
-    <Container lineColor={lineColor}>
-      <h1>{title}</h1>
-      <Controllers>{children}</Controllers>
-    </Container>
-  );
-};
+export const ContentHeader: React.FC<IContentHeaderProps> = ({ title, lineColor, children }) => (
+  <Container lineColor={lineColor}>
+    <h1>{title}</h1>
+    <Controllers>{children}</Controllers>
+  </Container>
+);
 
 const Container = styled.div<IContainerProps>`
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 30px;
-
 
   > h1 {
     color: ${(props) => props.theme.colors.white};
@@ -39,6 +36,7 @@ const Container = styled.div<IContainerProps>`
     }
   }
 `;
+
 const Controllers = styled.div`
   display: flex;
   align-items: center;
