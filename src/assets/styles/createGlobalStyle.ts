@@ -5,6 +5,7 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        list-style: none;
     }
 
     html, body, #root {
@@ -19,10 +20,6 @@ export default createGlobalStyle`
 
     a {
         text-decoration: none;
-    }
-
-    ul {
-        list-style: none;
     }
 
     button, svg {

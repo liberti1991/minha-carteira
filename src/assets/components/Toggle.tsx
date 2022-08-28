@@ -1,16 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Toggle: React.FC = () => (
+interface IToggleProps {
+  labelLeft: string;
+  labelRight: string;
+  checked: boolean;
+  onChange(): void;
+}
+
+export const Toggle: React.FC<IToggleProps> = ({ labelLeft, labelRight, checked, onChange }) => (
   <Container>
-    <ToggleLabel>Dark</ToggleLabel>
+    <ToggleLabel>{labelLeft}</ToggleLabel>
     <ToggleBtn>
       <label>
-        <input type="checkbox" onChange={() => console.log("mudei")} />
+        <input type="checkbox" checked={checked} onChange={onChange} />
         <span></span>
       </label>
     </ToggleBtn>
-    <ToggleLabel>Light</ToggleLabel>
+    <ToggleLabel>{labelRight}</ToggleLabel>
   </Container>
 );
 
@@ -30,7 +37,7 @@ const ToggleBtn = styled.div`
   label {
     position: absolute;
     width: 100%;
-    height: 20px;
+    height: 21px;
     background-color: #28292c;
     border-radius: 50px;
     cursor: pointer;
