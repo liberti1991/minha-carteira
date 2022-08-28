@@ -30,13 +30,22 @@ interface IProps {
 const ThemeContext = createContext<IthemeContext>({} as IthemeContext);
 
 const ThemeProvider: React.FC<IProps> = ({ children }) => {
-  const [theme, themeSet] = useState<ITheme>(dark);
+  const [theme, themeSet] = useState<ITheme>(() => {
+    const themeSaved = localStorage.getItem("@MinhaCarteira:theme");
+    if (themeSaved) {
+      return JSON.parse(themeSaved);
+    } else {
+      return dark;
+    }
+  });
 
   const toggleTheme = () => {
     if (theme.title === "dark") {
       themeSet(light);
+      localStorage.setItem("@MinhaCarteira:theme", JSON.stringify(light));
     } else {
       themeSet(dark);
+      localStorage.setItem("@MinhaCarteira:theme", JSON.stringify(dark));
     }
   };
 
@@ -48,4 +57,4 @@ function useTheme(): IthemeContext {
   return context;
 }
 
-export { ThemeProvider, useTheme}; 
+export { ThemeProvider, useTheme };
