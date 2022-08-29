@@ -49,4 +49,8 @@ const Container = styled.div`
       font-size: 18px;
     }
   }
+
+  @media screen and (max-width: 648px) {
+    
+  }
 `;

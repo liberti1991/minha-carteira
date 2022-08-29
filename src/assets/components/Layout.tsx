@@ -26,4 +26,11 @@ const ContainerGrid = styled.div`
     "aside mainHeader"
     "aside content";
   height: 100vh;
+
+  @media screen and (max-width: 648px) {
+    grid-template-columns: 100%;
+    grid-template-areas:
+    " mainHeader"
+    " content";
+  }
 `;

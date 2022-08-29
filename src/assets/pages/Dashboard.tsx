@@ -295,6 +295,10 @@ const SectionWallet = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+
+  @media screen and (max-width: 648px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SectionBox = styled.section`
@@ -302,6 +306,10 @@ const SectionBox = styled.section`
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin: 20px 0;
+
+  @media screen and (max-width: 648px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const SectionGraficTwo = styled.section`
@@ -312,4 +320,8 @@ const SectionGraficThree = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  
+  @media screen and (max-width: 648px) {
+    grid-template-columns: 1fr;
+  }
 `;

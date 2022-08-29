@@ -29,7 +29,8 @@ export const WalletBox: React.FC<IWalletBoxProps> = ({ title, amount, footerLabe
     <Container color={color}>
       <span>{title}</span>
       <h1>
-        <CountUp end={amount} prefix={"R$"} separator="." decimal="," decimals={2} />
+        <strong>R$ </strong>
+        <CountUp end={amount} separator="." decimal="," decimals={2} />
       </h1>
       <small>{footerLabel}</small>
       <img src={iconSelected} alt={title} />
@@ -63,5 +64,33 @@ const Container = styled.div<ICardProps>`
     font-size: 12px;
     position: absolute;
     bottom: 10px;
+  }
+
+  @media screen and (max-width: 750px) {
+    > h1 {
+      word-wrap: break-word;
+      font-size: 22px;
+
+      > strong {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    > span {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    > h1 {
+      display: flex;
+
+      > strong {
+        width: auto;
+        position: initial;
+        margin-right: 3px;
+      }
+    }
   }
 `;

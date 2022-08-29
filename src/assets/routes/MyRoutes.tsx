@@ -11,12 +11,13 @@ import { SignIn } from "../pages/SignIn";
 
 export const MyRoutes = () => {
   const { logged } = useAuth();
-  console.log(logged);
+  
   return (
     <>
       {logged ? (
         <Layout>
           <Routes>
+            {/* <Route path="/" element={<Dashboard />} /> */}
             <Route index element={<Dashboard />} />
             <Route path="/list/:type" element={<List />} />
           </Routes>
@@ -29,4 +30,3 @@ export const MyRoutes = () => {
     </>
   );
 };
-
