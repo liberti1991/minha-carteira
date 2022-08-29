@@ -4,14 +4,27 @@ import { NavLink } from "react-router-dom";
 
 import { useAuth } from "../hooks/auth";
 
+import { Toggle } from "./Toggle";
+
 import logo from "../svg/logo.svg";
 
 import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward } from "react-icons/md";
 
-export const Aside: React.FC = () => {
+interface IContainerProps {
+  ToggleIsOpen: boolean;
+}
+
+interface IStatesProps {
+  ToggleIsOpen: boolean;
+  handleToggleMenu(): void;
+  darkTheme: boolean;
+  handleChangeTheme(): void;
+}
+
+export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme, darkTheme, handleToggleMenu }) => {
   const { signOut } = useAuth();
   return (
-    <Container>
+    <Container ToggleIsOpen={ToggleIsOpen}>
       <Header>
         <img src={logo} alt="Logo minha carteira" />
         <h4>Minha Carteira</h4>
@@ -29,20 +42,45 @@ export const Aside: React.FC = () => {
           <MdArrowDownward />
           Saídas
         </NavLink>
-        <div>
-          <MdExitToApp onClick={signOut} />
+        <p onClick={signOut}>
+          <MdExitToApp />
           Sair
-        </div>
+        </p>
       </Menu>
+      <span>
+        <Toggle labelLeft="Light" labelRight="Dark" checked={darkTheme} onChange={handleChangeTheme} />
+      </span>
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<IContainerProps>`
   grid-area: aside;
   background-color: ${(props) => props.theme.colors.secondary};
   padding-left: 30px;
   border-right: 1px solid ${(props) => props.theme.colors.gray};
+  position: relative;
+
+  >span {
+    display: none;
+  
+  }
+
+  @media screen and (max-width: 648px) {
+    position: absolute;
+    z-index: 10;
+    height: calc(100vh - 70px);
+    top: 70px;
+    width: 250px;
+    left: ${(props) => (props.ToggleIsOpen ? "0" : "-100vw")};
+    transition: 0.8s;
+
+    > span{
+      display: inline;
+      position: absolute;
+      bottom: 40px;
+    }
+  }
 `;
 
 const Header = styled.header`
@@ -68,7 +106,7 @@ const Menu = styled.nav`
   gap: 15px;
 
   a,
-  div {
+  p {
     cursor: pointer;
     color: ${(props) => props.theme.colors.info};
     transition: opacity 0.3s;

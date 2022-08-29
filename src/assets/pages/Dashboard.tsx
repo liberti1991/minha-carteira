@@ -82,7 +82,7 @@ export const Dashboard: React.FC = () => {
     return totalGains - totalExpenses;
   }, [totalGains, totalExpenses]);
 
-  // mensagens de erro no card 
+  // mensagens de erro no card
   const message = useMemo(() => {
     if (totalGains === 0 && totalExpenses === 0) {
       return {
@@ -307,7 +307,7 @@ const SectionBox = styled.section`
   gap: 20px;
   margin: 20px 0;
 
-  @media screen and (max-width: 648px) {
+  @media screen and (max-width: 700px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -320,7 +320,7 @@ const SectionGraficThree = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  
+
   @media screen and (max-width: 648px) {
     grid-template-columns: 1fr;
   }

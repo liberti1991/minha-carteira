@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+import { useTheme } from "../hooks/theme";
 
 import { Aside } from "./Aside";
 import { Content } from "./Content";
@@ -9,14 +11,25 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<Props> = ({ children }) => (
-  <ContainerGrid>
-    <MainHeader />
-    <Aside />
-    <Content>{children}</Content>
-  </ContainerGrid>
-);
+export const Layout: React.FC<Props> = ({ children }) => {
+  const { toggleTheme, theme } = useTheme();
+  const [darkTheme, darkThemeSet] = useState(() => (theme.title === "dark" ? true : false));
+  const handleChangeTheme = () => {
+    darkThemeSet(!darkTheme);
+    toggleTheme();
+  };
 
+  const [ToggleIsOpen, ToggleIsOpenSet] = useState(false);
+  const handleToggleMenu = () => ToggleIsOpenSet(!ToggleIsOpen);
+
+  return (
+    <ContainerGrid>
+      <MainHeader ToggleIsOpen={ToggleIsOpen} handleToggleMenu={handleToggleMenu} darkTheme={darkTheme} handleChangeTheme={handleChangeTheme} />
+      <Aside ToggleIsOpen={ToggleIsOpen} handleToggleMenu={handleToggleMenu} darkTheme={darkTheme} handleChangeTheme={handleChangeTheme} />
+      <Content>{children}</Content>
+    </ContainerGrid>
+  );
+};
 const ContainerGrid = styled.div`
   display: grid;
   grid-template-columns: 250px auto;
@@ -30,7 +43,7 @@ const ContainerGrid = styled.div`
   @media screen and (max-width: 648px) {
     grid-template-columns: 100%;
     grid-template-areas:
-    " mainHeader"
-    " content";
+      " mainHeader"
+      " content";
   }
 `;

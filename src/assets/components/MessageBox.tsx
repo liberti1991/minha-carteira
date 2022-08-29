@@ -24,7 +24,8 @@ export const MessageBox: React.FC<IMessageBox> = ({ title, description, footerTe
 );
 
 const Container = styled.div`
-  height: 260px;
+  height: 240px;
+  width: 100%;
   background-color: ${(props) => props.theme.colors.tertiary};
   color: ${(props) => props.theme.colors.white};
   border-radius: 10px;

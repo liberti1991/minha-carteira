@@ -40,7 +40,7 @@ export const GraficthreeAndFourCard: React.FC<IGraficthreeAndFourCard> = ({ titl
               <Cell key={item.id} fill={item.color} />
             ))}
           </Bar>
-          <Tooltip cursor={{fill: 'none'}} formatter={(value: number) => formatCurrency(value)} />
+          <Tooltip cursor={{ fill: "none" }} formatter={(value: number) => formatCurrency(value)} />
         </BarChart>
       </ResponsiveContainer>
     </SedRight>
@@ -79,6 +79,19 @@ const Legend = styled.li<ILegendProps>`
     border-radius: 5px;
     line-height: 45px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 900px) {
+    > p {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 12px;
+    }
+
+    > span {
+      font-size: 14px;
+    }
   }
 `;
 

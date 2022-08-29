@@ -35,6 +35,11 @@ const Container = styled.div<IContainerProps>`
       border-radius: 2px;
     }
   }
+  @media screen and (max-width: 648px) {
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
 `;
 
 const Controllers = styled.div`

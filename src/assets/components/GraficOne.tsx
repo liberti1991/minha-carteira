@@ -43,7 +43,7 @@ export const GraficOne: React.FC<IrelationExpensesVersusGains> = ({ relationExpe
 );
 
 const Container = styled.section`
-  height: 260px;
+  height: 240px;
   background-color: ${(props) => props.theme.colors.tertiary};
   color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
@@ -90,6 +90,18 @@ const Legend = styled.li<ILegendProps>`
     border-radius: 5px;
     line-height: 45px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    font-size: 13px;
+
+    > p {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 12px;
+    }
   }
 `;
 
