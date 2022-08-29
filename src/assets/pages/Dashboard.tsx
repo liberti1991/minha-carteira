@@ -14,12 +14,15 @@ import { expenses } from "../repositories/expenses";
 
 import { ListOfMonths } from "../utils/ListOfMonths";
 
+import { useTheme } from "../hooks/theme";
+
 import happySvg from "../svg/happy.svg";
 import sadSvg from "../svg/sad.svg";
 import grinningSvg from "../svg/grinning.svg";
 import opsSvg from "../svg/ops.svg";
 
 export const Dashboard: React.FC = () => {
+  const { theme } = useTheme();
   // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
 
@@ -265,6 +268,20 @@ export const Dashboard: React.FC = () => {
     ];
   }, [monthSelected, yearSelected]);
 
+  const changeColor = useMemo(() => {
+    if (theme.title === "dark") {
+      if (totalBalance > 0) {
+        return "#006400";
+      } else {
+        return "#D71709";
+      }
+    } else if (totalBalance < 0) {
+      return "#fb2222";
+    } else {
+      return "#0aff0a";
+    }
+  }, [totalBalance, theme]);
+
   return (
     <>
       <ContentHeader title="Dashboard" lineColor="#f7931b">
@@ -272,9 +289,9 @@ export const Dashboard: React.FC = () => {
         <SelectInput options={years} onChange={(event) => yearSelectedSet(Number(event.target.value))} defaulValue={yearSelected} />
       </ContentHeader>
       <SectionWallet>
-        <WalletBox amount={totalBalance} title="Saldo" footerLabel="Atualizado com base nas entradas e saídas" icon="dollar" color="#4e41f0" />
-        <WalletBox amount={totalGains} title="Entradas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromUp" color="#f7931b" />
-        <WalletBox amount={totalExpenses} title="Saídas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromDown" color="#e44c4e" />
+        <WalletBox amount={totalBalance} title="Saldo" footerLabel="Atualizado com base nas entradas e saídas" icon="dollar" color={changeColor} />
+        <WalletBox amount={totalGains} title="Entradas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromUp" color="#2109d7" />
+        <WalletBox amount={totalExpenses} title="Saídas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromDown" color="darkorange" />
       </SectionWallet>
       <SectionBox>
         <MessageBox title={message.title} description={message.description} footerText={message.footerText} icon={message.icon} />

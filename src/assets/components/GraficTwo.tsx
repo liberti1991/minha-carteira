@@ -80,7 +80,7 @@ const Container = styled.section`
     }
   }
   @media screen and (max-width: 648px) {
-    padding: 20px 5px;
+    padding: 20px 0;
 
     > header {
       flex-direction: column;
