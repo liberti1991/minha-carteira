@@ -4,7 +4,7 @@ export const light = {
   colors: {
     primary: '#C0C0C0',
     secondary: '#D3D3D3',
-    tertiary: '#F5F5F5',
+    tertiary: '#DCDCDC',
 
     white: '#000',
     black: '#FFF',
