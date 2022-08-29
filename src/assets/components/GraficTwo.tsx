@@ -34,8 +34,8 @@ export const GraficTwo: React.FC<IGraficTwo> = ({ data, lineColorAmountEntry, li
     <div>
       <ResponsiveContainer>
         <LineChart data={data} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray=" 3 3 " stroke="#cecece" />
-          <XAxis dataKey="month" stroke="#cecece" />
+          <CartesianGrid strokeDasharray=" 3 3 " stroke="#b3b3b3" />
+          <XAxis dataKey="month" stroke="#8f8f8f" />
           <Tooltip formatter={(value: number) => formatCurrency(value)} />
           <Line type="monotone" dataKey="amountEntry" name="Entradas" stroke={lineColorAmountEntry} strokeWidth={5} dot={{ r: 5 }} activeDot={{ r: 8 }} />
           <Line type="monotone" dataKey="amountOutput" name="Saídas" stroke={lineColorAmountOutput} strokeWidth={5} dot={{ r: 5 }} activeDot={{ r: 8 }} />
