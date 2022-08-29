@@ -23,13 +23,14 @@ interface IStatesProps {
 
 export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme, darkTheme, handleToggleMenu }) => {
   const { signOut } = useAuth();
-  return (
+  return (<>
+      <Shadow ToggleIsOpen={ToggleIsOpen} onClick={handleToggleMenu}></Shadow>
     <Container ToggleIsOpen={ToggleIsOpen}>
       <Header>
         <img src={logo} alt="Logo minha carteira" />
         <h4>Minha Carteira</h4>
       </Header>
-      <Menu>
+      <Menu onClick={handleToggleMenu}>
         <NavLink to="/">
           <MdDashboard />
           Dashboard
@@ -51,6 +52,7 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
         <Toggle labelLeft="Light" labelRight="Dark" checked={darkTheme} onChange={handleChangeTheme} />
       </span>
     </Container>
+  </>
   );
 };
 
@@ -121,5 +123,22 @@ const Menu = styled.nav`
     > svg {
       font-size: 20px;
     }
+  }
+`;
+
+const Shadow = styled.div<IContainerProps>`
+  width: 100%;
+  background-color: white;
+  height: calc(100vh - 70px);
+  top: 70px;
+  position: absolute;
+  background-color: white;
+  opacity: .2;
+  transition: all 0.5s ease;
+  z-index: 5;
+  left: ${(props) => (props.ToggleIsOpen ? 0 : "-100%")};
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
