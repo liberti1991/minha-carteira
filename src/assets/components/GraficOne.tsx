@@ -49,6 +49,21 @@ const Container = styled.section`
   border-radius: 10px;
   padding: 30px 20px;
   display: flex;
+  animation: animate .5s;
+
+  @keyframes animate {
+    0%{
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    50%{
+      opacity: .3;
+    }
+    100%{
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
 `;
 
 const SideLeft = styled.aside`

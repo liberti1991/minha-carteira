@@ -27,17 +27,30 @@ export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, ti
 
 const Container = styled.li`
   background-color: ${(props) => props.theme.colors.tertiary};
-  
   border-radius: 5px;
   padding: 10px 15px 10px 25px;
   position: relative;
-
   cursor: pointer;
   transition: all 0.3s;
+  animation: animate6 .5s ease;
 
   :hover {
     opacity: 0.7;
     transform: translateX(10px);
+  }
+
+  @keyframes animate6 {
+    0%{
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    50%{
+      opacity: .3;
+    }
+    100%{
+      transform: translateX(0px);
+      opacity: 1;
+    }
   }
 `;
 

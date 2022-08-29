@@ -50,6 +50,7 @@ const Container = styled.section`
   color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
   padding: 30px 20px;
+  animation: animate3 0.5s;
 
   > header {
     display: flex;
@@ -65,9 +66,22 @@ const Container = styled.section`
     height: 240px;
   }
 
+  @keyframes animate3 {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
   @media screen and (max-width: 648px) {
     padding: 20px 5px;
-    
+
     > header {
       flex-direction: column;
     }

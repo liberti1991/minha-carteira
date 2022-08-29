@@ -33,6 +33,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  animation: animate2 .5s;
 
   > header {
     > h1 {
@@ -51,7 +52,17 @@ const Container = styled.div`
     }
   }
 
-  @media screen and (max-width: 648px) {
-    
+  @keyframes animate2 {
+    0%{
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    50%{
+      opacity: .3;
+    }
+    100%{
+      transform: translateX(0px);
+      opacity: 1;
+    }
   }
 `;

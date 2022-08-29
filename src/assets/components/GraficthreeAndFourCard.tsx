@@ -54,6 +54,21 @@ const Container = styled.section`
   padding: 30px 20px;
   height: 260px;
   display: flex;
+  animation: animate4 .5s;
+
+  @keyframes animate4 {
+    0%{
+      transform: translateX(100px);
+      opacity: 0;
+    }
+    50%{
+      opacity: .3;
+    }
+    100%{
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
 `;
 
 const SidLeft = styled.aside`

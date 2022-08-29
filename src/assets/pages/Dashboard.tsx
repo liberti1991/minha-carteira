@@ -295,6 +295,21 @@ const SectionWallet = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+  animation: animate7 0.5s;
+
+  @keyframes animate7 {
+    0% {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
 
   @media screen and (max-width: 648px) {
     grid-template-columns: 1fr;
