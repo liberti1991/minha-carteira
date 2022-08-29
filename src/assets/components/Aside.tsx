@@ -23,49 +23,49 @@ interface IStatesProps {
 
 export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme, darkTheme, handleToggleMenu }) => {
   const { signOut } = useAuth();
-  return (<>
+  return (
+    <>
       <Shadow ToggleIsOpen={ToggleIsOpen} onClick={handleToggleMenu}></Shadow>
-    <Container ToggleIsOpen={ToggleIsOpen}>
-      <Header>
-        <img src={logo} alt="Logo minha carteira" />
-        <h4>Minha Carteira</h4>
-      </Header>
-      <Menu onClick={handleToggleMenu}>
-        <NavLink to="/">
-          <MdDashboard />
-          Dashboard
-        </NavLink>
-        <NavLink to="/list/entry-balance">
-          <MdArrowUpward />
-          Entradas
-        </NavLink>
-        <NavLink to="/list/exit-balance">
-          <MdArrowDownward />
-          Saídas
-        </NavLink>
-        <p onClick={signOut}>
-          <MdExitToApp />
-          Sair
-        </p>
-      </Menu>
-      <span>
-        <Toggle labelLeft="Light" labelRight="Dark" checked={darkTheme} onChange={handleChangeTheme} />
-      </span>
-    </Container>
-  </>
+      <Container ToggleIsOpen={ToggleIsOpen}>
+        <Header>
+          <img src={logo} alt="Logo minha carteira" />
+          <h4>Minha Carteira</h4>
+        </Header>
+        <Menu onClick={handleToggleMenu}>
+          <NavLink to="/">
+            <MdDashboard />
+            Dashboard
+          </NavLink>
+          <NavLink to="/list/entry-balance">
+            <MdArrowUpward />
+            Entradas
+          </NavLink>
+          <NavLink to="/list/exit-balance">
+            <MdArrowDownward />
+            Saídas
+          </NavLink>
+          <p onClick={signOut}>
+            <MdExitToApp />
+            Sair
+          </p>
+        </Menu>
+        <span>
+          <Toggle labelLeft="Light" labelRight="Dark" checked={darkTheme} onChange={handleChangeTheme} />
+        </span>
+      </Container>
+    </>
   );
 };
 
 const Container = styled.div<IContainerProps>`
   grid-area: aside;
   background-color: ${(props) => props.theme.colors.secondary};
-  padding-left: 30px;
+  padding-left: 40px;
   border-right: 1px solid ${(props) => props.theme.colors.gray};
   position: relative;
 
-  >span {
+  > span {
     display: none;
-  
   }
 
   @media screen and (max-width: 648px) {
@@ -77,10 +77,11 @@ const Container = styled.div<IContainerProps>`
     left: ${(props) => (props.ToggleIsOpen ? "0" : "-100vw")};
     transition: 0.8s;
 
-    > span{
+    > span {
       display: inline;
       position: absolute;
       bottom: 100px;
+      padding-left: 15px;
     }
   }
 `;
@@ -103,6 +104,7 @@ const Header = styled.header`
 
 const Menu = styled.nav`
   margin-top: 50px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -133,7 +135,7 @@ const Shadow = styled.div<IContainerProps>`
   top: 70px;
   position: absolute;
   background-color: white;
-  opacity: .2;
+  opacity: 0.2;
   transition: all 0.5s ease;
   z-index: 5;
   left: ${(props) => (props.ToggleIsOpen ? 0 : "-100%")};

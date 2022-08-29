@@ -40,7 +40,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 35px 0 25px;
   border-bottom: 1px solid ${(props) => props.theme.colors.gray};
 
   @media screen and (max-width: 648px) {
