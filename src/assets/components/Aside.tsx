@@ -78,7 +78,7 @@ const Container = styled.div<IContainerProps>`
     > span{
       display: inline;
       position: absolute;
-      bottom: 40px;
+      bottom: 80px;
     }
   }
 `;
