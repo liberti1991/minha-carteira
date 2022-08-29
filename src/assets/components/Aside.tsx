@@ -13,7 +13,7 @@ export const Aside: React.FC = () => (
       <h4>Minha Carteira</h4>
     </Header>
     <Menu>
-      <NavLink to="/">
+      <NavLink to="/dashboard">
         <MdDashboard />
         Dashbord
       </NavLink>
