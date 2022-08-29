@@ -80,7 +80,7 @@ const Container = styled.div<IContainerProps>`
     > span{
       display: inline;
       position: absolute;
-      bottom: 80px;
+      bottom: 100px;
     }
   }
 `;
