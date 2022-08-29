@@ -138,7 +138,7 @@ const Shadow = styled.div<IContainerProps>`
   z-index: 5;
   left: ${(props) => (props.ToggleIsOpen ? 0 : "-100%")};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 648px) {
     display: none;
   }
 `;
