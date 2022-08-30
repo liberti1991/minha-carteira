@@ -26,7 +26,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
       localStorage.setItem("@MinhaCarteira:logged", "true");
       loggedSet(true);
     } else {
-      toast.warning("Senha ou Usuário inválidos!");
+      toast("Senha ou Usuário inválidos!", { type: "warning" });
     }
   };
 
