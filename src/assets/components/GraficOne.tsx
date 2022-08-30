@@ -50,6 +50,7 @@ const Container = styled.section`
   padding: 30px 20px;
   display: flex;
   animation: animate .5s;
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
 
   @keyframes animate {
     0%{
@@ -100,6 +101,7 @@ const Legend = styled.li<ILegendProps>`
 
   p {
     background-color: ${(props) => props.color};
+    color: ${(props) => props.theme.colors.universal};
     width: 45px;
     height: 45px;
     border-radius: 5px;

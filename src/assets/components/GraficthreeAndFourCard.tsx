@@ -54,17 +54,18 @@ const Container = styled.section`
   padding: 30px 20px;
   height: 260px;
   display: flex;
-  animation: animate4 .5s;
+  animation: graficOfBar 0.5s;
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
 
-  @keyframes animate4 {
-    0%{
+  @keyframes graficOfBar {
+    0% {
       transform: translateX(100px);
       opacity: 0;
     }
-    50%{
-      opacity: .3;
+    50% {
+      opacity: 0.3;
     }
-    100%{
+    100% {
       transform: translateX(0px);
       opacity: 1;
     }
@@ -89,6 +90,7 @@ const Legend = styled.li<ILegendProps>`
 
   p {
     background-color: ${(props) => props.color};
+    color: ${(props) => props.theme.colors.universal};
     width: 45px;
     height: 45px;
     border-radius: 5px;

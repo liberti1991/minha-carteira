@@ -38,7 +38,7 @@ export const List = () => {
   // pega o parametro da rota do navegador && on dados do BD
   const { type } = useParams();
   const paramsRoutes = useMemo(() => {
-    return type === "entry-balance" ? { title: "Entradas", lineColor: "#4e41f0", date: gains } : { title: "Saídas", lineColor: "#e44c4e", date: expenses };
+    return type === "entry-balance" ? { title: "Entradas", lineColor: "#4e41f0", date: gains } : { title: "Saídas", lineColor: "darkorange", date: expenses };
   }, [type]);
 
   // filtra somente os anos que existem no db assim fica dinamica o select
@@ -88,7 +88,7 @@ export const List = () => {
           amountFormatted: formatCurrency(Number(item.amount)),
           frequency: item.frequency,
           dateFormatted: formatDate(item.date),
-          tagColor: item.frequency === "recorrente" ? "#4e41f0" : "#e44c4e",
+          tagColor: item.frequency === "recorrente" ? "#4e41f0" : "darkorange",
         };
       });
     dataSet(filteredDate);

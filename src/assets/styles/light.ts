@@ -8,10 +8,11 @@ export const light = {
 
     white: '#000',
     black: '#FFF',
-    gray: '#1C1C1C',
+    gray: '#1C1C1C',    
+    universal: '#FFF',
     
     success: '#03BB85',
-    info: '#3B5998',
+    info: '#152728',
     warning: '#FF6961',
   },
 };

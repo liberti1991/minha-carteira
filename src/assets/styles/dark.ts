@@ -9,10 +9,12 @@ export const dark = {
     white: '#FFF',
     black: '#000',
     gray: '#BFBFBF',
+    universal: '#FFF',
 
     success: '#4E41F0',
     info: '#F7931B',
     warning: '#E44C4E',
+
   },
 };
 

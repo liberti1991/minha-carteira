@@ -17,9 +17,11 @@ interface ITheme {
     white: string;
     black: string;
     gray: string;
+    universal: string;
     success: string;
     info: string;
     warning: string;
+    
   };
 }
 

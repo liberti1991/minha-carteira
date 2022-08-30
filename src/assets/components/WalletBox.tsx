@@ -46,6 +46,7 @@ const Container = styled.div<ICardProps>`
   padding: 10px 20px;
   position: relative;
   overflow: hidden;
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
 
   > img {
     position: absolute;
@@ -64,6 +65,7 @@ const Container = styled.div<ICardProps>`
     font-size: 12px;
     position: absolute;
     bottom: 10px;
+    color: ${(props) => props.theme.colors.universal};
   }
 
   @media screen and (max-width: 750px) {

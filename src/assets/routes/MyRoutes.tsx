@@ -17,7 +17,6 @@ export const MyRoutes = () => {
       {logged ? (
         <Layout>
           <Routes>
-            {/* <Route path="/" element={<Dashboard />} /> */}
             <Route index element={<Dashboard />} />
             <Route path="/list/:type" element={<List />} />
           </Routes>

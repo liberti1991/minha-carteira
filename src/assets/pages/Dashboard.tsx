@@ -130,14 +130,14 @@ export const Dashboard: React.FC = () => {
         name: "Entradas",
         value: totalGains,
         percent: PercentGains ? PercentGains : 0,
-        color: "#f7931b",
+        color: "#2109d7",
       },
       {
         id: 2,
         name: "Saídas",
         value: totalExpenses,
         percent: PercentExpenses ? PercentExpenses : 0,
-        color: "#e44c4e",
+        color: "darkorange",
       },
     ];
 
@@ -214,14 +214,14 @@ export const Dashboard: React.FC = () => {
         name: "Recorrentes",
         amount: amountRecurrent,
         percent: percentRecurrent ? percentRecurrent : 0,
-        color: "#f7931b",
+        color: "#2109d7",
       },
       {
         id: 2,
         name: "Eventuais",
         amount: amountEventual,
         percent: percentEventual ? percentEventual : 0,
-        color: "#e44c4e",
+        color: "darkorange",
       },
     ];
   }, [monthSelected, yearSelected]);
@@ -256,14 +256,14 @@ export const Dashboard: React.FC = () => {
         name: "Recorrentes",
         amount: amountRecurrent,
         percent: percentRecurrent ? percentRecurrent : 0,
-        color: "#f7931b",
+        color: "#2109d7",
       },
       {
         id: 2,
         name: "Eventuais",
         amount: amountEventual,
         percent: percentEventual ? percentEventual : 0,
-        color: "#e44c4e",
+        color: "darkorange",
       },
     ];
   }, [monthSelected, yearSelected]);
@@ -278,7 +278,7 @@ export const Dashboard: React.FC = () => {
     } else if (totalBalance < 0) {
       return "#fb2222";
     } else {
-      return "#0aff0a";
+      return "#19ca19";
     }
   }, [totalBalance, theme]);
 
@@ -298,7 +298,7 @@ export const Dashboard: React.FC = () => {
         <GraficOne relationExpensesVersusGains={relationExpensesVersusGains} />
       </SectionBox>
       <SectionGraficTwo>
-        <GraficTwo data={graficTwo} lineColorAmountEntry="#f7931b" lineColorAmountOutput="#e44c4e" />
+        <GraficTwo data={graficTwo} lineColorAmountEntry="#2109d7" lineColorAmountOutput="darkorange" />
       </SectionGraficTwo>
       <SectionGraficThree>
         <GraficthreeAndFourCard title="Saídas" date={graficThreeExpenses} />

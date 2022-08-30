@@ -33,7 +33,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: animate2 .5s;
+  animation: animate2 0.5s;
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
 
   > header {
     > h1 {
@@ -41,7 +42,7 @@ const Container = styled.div`
       align-items: center;
       margin-bottom: 15px;
       gap: 10px;
-      
+
       > img {
         width: 35px;
       }
@@ -53,14 +54,14 @@ const Container = styled.div`
   }
 
   @keyframes animate2 {
-    0%{
+    0% {
       transform: translateX(-100px);
       opacity: 0;
     }
-    50%{
-      opacity: .3;
+    50% {
+      opacity: 0.3;
     }
-    100%{
+    100% {
       transform: translateX(0px);
       opacity: 1;
     }
