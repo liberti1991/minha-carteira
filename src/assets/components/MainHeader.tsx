@@ -60,7 +60,7 @@ const ToggleMenu = styled.div`
     width: 35px;
     height: 35px;
     border-radius: 5px;
-    background-color: "#F7931B";
+    background-color: #F7931B;
     transition: all 0.3s;
 
     :hover {
