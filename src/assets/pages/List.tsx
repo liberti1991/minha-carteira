@@ -13,6 +13,8 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { formatDate } from "../utils/formatDate";
 import { ListOfMonths } from "../utils/ListOfMonths";
 
+import { useTheme } from "../hooks/theme";
+
 interface IData {
   id: number;
   description: string;
@@ -23,6 +25,7 @@ interface IData {
 }
 
 export const List = () => {
+  const { theme } = useTheme();
   //state DB
   const [data, dataSet] = useState<IData[]>([]);
 
@@ -88,11 +91,18 @@ export const List = () => {
           amountFormatted: formatCurrency(Number(item.amount)),
           frequency: item.frequency,
           dateFormatted: formatDate(item.date),
-          tagColor: item.frequency === "recorrente" ? "#4e41f0" : "darkorange",
+          tagColor:
+            item.frequency === "recorrente" && theme.title === "dark"
+              ? theme.colors.success
+              : item.frequency === "recorrente" && theme.title === "dark"
+              ? theme.colors.warning
+              : item.frequency !== "recorrente" && theme.title !== "dark"
+              ? theme.colors.success
+              : theme.colors.warning,
         };
       });
     dataSet(filteredDate);
-  }, [paramsRoutes, yearSelected, monthSelected, filterButtonSelected]);
+  }, [paramsRoutes, yearSelected, monthSelected, filterButtonSelected, theme]);
 
   return (
     <div>

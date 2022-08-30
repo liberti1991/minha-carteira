@@ -24,7 +24,7 @@ export const MainHeader: React.FC<IStatesProps> = ({ ToggleIsOpen, handleToggleM
     <Container>
       <ToggleMenu>{ToggleIsOpen ? <MdClose onClick={handleToggleMenu} /> : <MdMenu onClick={handleToggleMenu} />}</ToggleMenu>
       <span>
-        <Toggle labelLeft="Light" labelRight="Dark" checked={darkTheme} onChange={handleChangeTheme} />
+        <Toggle checked={darkTheme} onChange={handleChangeTheme} />
       </span>
       <Profile>
         <h3>Olá, {emoji}</h3>
@@ -60,7 +60,7 @@ const ToggleMenu = styled.div`
     width: 35px;
     height: 35px;
     border-radius: 5px;
-    background-color: ${(props) => props.theme.colors.warning};
+    background-color: ${(props) => props.theme.colors.info};
     transition: all 0.3s;
 
     :hover {

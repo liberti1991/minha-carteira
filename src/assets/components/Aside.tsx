@@ -50,7 +50,7 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
           </p>
         </Menu>
         <span>
-          <Toggle labelLeft="Light" labelRight="Dark" checked={darkTheme} onChange={handleChangeTheme} />
+          <Toggle checked={darkTheme} onChange={handleChangeTheme} />
         </span>
       </Container>
     </>
@@ -81,7 +81,7 @@ const Container = styled.div<IContainerProps>`
       display: inline;
       position: absolute;
       bottom: 100px;
-      padding-left: 15px;
+      padding-left: 35px;
     }
   }
 `;

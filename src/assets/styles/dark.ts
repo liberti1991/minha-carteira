@@ -11,9 +11,9 @@ export const dark = {
     gray: '#BFBFBF',
     universal: '#FFF',
 
-    success: '#4E41F0',
+    success: '#19ca19',
     info: '#F7931B',
-    warning: '#E44C4E',
+    warning: 'red',
 
   },
 };

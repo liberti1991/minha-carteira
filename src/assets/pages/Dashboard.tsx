@@ -301,8 +301,8 @@ export const Dashboard: React.FC = () => {
         <GraficTwo data={graficTwo} lineColorAmountEntry="#2109d7" lineColorAmountOutput="darkorange" />
       </SectionGraficTwo>
       <SectionGraficThree>
-        <GraficthreeAndFourCard title="Saídas" date={graficThreeExpenses} />
         <GraficthreeAndFourCard title="Entradas" date={graficThreeGains} />
+        <GraficthreeAndFourCard title="Saídas" date={graficThreeExpenses} />
       </SectionGraficThree>
     </>
   );

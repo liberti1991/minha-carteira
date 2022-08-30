@@ -11,9 +11,9 @@ export const light = {
     gray: '#1C1C1C',    
     universal: '#FFF',
     
-    success: '#03BB85',
+    success: '#006400',
     info: '#152728',
-    warning: '#FF6961',
+    warning: '#fb2222',
   },
 };
 

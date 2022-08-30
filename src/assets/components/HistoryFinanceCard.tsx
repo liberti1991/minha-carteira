@@ -33,6 +33,8 @@ const Container = styled.li`
   cursor: pointer;
   transition: all 0.3s;
   animation: animate6 .5s ease;
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
+
 
   :hover {
     opacity: 0.7;
