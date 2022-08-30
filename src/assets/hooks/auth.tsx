@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IAuthContext {
   logged: boolean;
@@ -24,7 +26,7 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
       localStorage.setItem("@MinhaCarteira:logged", "true");
       loggedSet(true);
     } else {
-      alert("Senha ou Usuário inválidos!");
+      toast.warning("Senha ou Usuário inválidos!");
     }
   };
 

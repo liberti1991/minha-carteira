@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -8,7 +8,8 @@ import { Toggle } from "./Toggle";
 
 import logo from "../svg/logo.svg";
 
-import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward } from "react-icons/md";
+import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward, MdAddchart } from "react-icons/md";
+import { Modal } from "./Modal";
 
 interface IContainerProps {
   ToggleIsOpen: boolean;
@@ -23,6 +24,9 @@ interface IStatesProps {
 
 export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme, darkTheme, handleToggleMenu }) => {
   const { signOut } = useAuth();
+
+  const [modal, modalSet] = useState(false);
+  const handleModal = () => modalSet(!modal);
   return (
     <>
       <Shadow ToggleIsOpen={ToggleIsOpen} onClick={handleToggleMenu} />
@@ -44,6 +48,10 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
             <MdArrowDownward />
             Saídas
           </NavLink>
+          <p onClick={() => modalSet(true)}>
+            <MdAddchart />
+            New
+          </p>
           <p onClick={signOut}>
             <MdExitToApp />
             Sair
@@ -53,6 +61,7 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
           <Toggle checked={darkTheme} onChange={handleChangeTheme} />
         </span>
       </Container>
+      {modal && <Modal handleModal={handleModal} />}
     </>
   );
 };
