@@ -2,6 +2,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { useTheme } from "../hooks/theme";
+
 import { ContentHeader } from "../components/ContentHeader";
 import { HistoryFinanceCard } from "../components/HistoryFinanceCard";
 import { SelectInput } from "../components/SelectInput";
@@ -12,8 +14,6 @@ import { expenses } from "../repositories/expenses";
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatDate } from "../utils/formatDate";
 import { ListOfMonths } from "../utils/ListOfMonths";
-
-import { useTheme } from "../hooks/theme";
 
 interface IData {
   id: number;
@@ -26,6 +26,7 @@ interface IData {
 
 export const List = () => {
   const { theme } = useTheme();
+
   //state DB
   const [data, dataSet] = useState<IData[]>([]);
 
@@ -64,6 +65,7 @@ export const List = () => {
       };
     });
   }, [paramsRoutes]);
+
   // func para filtro nos botoes
   const handleFrequencyClick = (frequency: string) => {
     const alreadySelected = filterButtonSelected.findIndex((item) => item === frequency);

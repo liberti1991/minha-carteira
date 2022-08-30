@@ -25,7 +25,7 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
   const { signOut } = useAuth();
   return (
     <>
-      <Shadow ToggleIsOpen={ToggleIsOpen} onClick={handleToggleMenu}></Shadow>
+      <Shadow ToggleIsOpen={ToggleIsOpen} onClick={handleToggleMenu} />
       <Container ToggleIsOpen={ToggleIsOpen}>
         <Header>
           <img src={logo} alt="Logo minha carteira" />

@@ -32,9 +32,8 @@ const Container = styled.li`
   position: relative;
   cursor: pointer;
   transition: all 0.3s;
-  animation: animate6 .5s ease;
+  animation: animate6 0.5s ease;
   box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
-
 
   :hover {
     opacity: 0.7;
@@ -42,14 +41,14 @@ const Container = styled.li`
   }
 
   @keyframes animate6 {
-    0%{
+    0% {
       transform: translateX(-100px);
       opacity: 0;
     }
-    50%{
-      opacity: .3;
+    50% {
+      opacity: 0.3;
     }
-    100%{
+    100% {
       transform: translateX(0px);
       opacity: 1;
     }

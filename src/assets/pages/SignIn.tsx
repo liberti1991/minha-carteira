@@ -20,10 +20,8 @@ export const SignIn: React.FC = () => {
         <img src={logoSvg} alt="Minha Carteira" />
         <h2>Minha Carteira</h2>
       </Header>
-
       <Form onSubmit={() => signIn(email, password)}>
         <h1>Entrar</h1>
-
         <Input type="email" placeholder="E-mail" onChange={(event) => emailSet(event.target.value)} required />
         <Input type="password" placeholder="Senha" onChange={(event) => passwordSet(event.target.value)} required />
         <Button type="submit">Acessar</Button>

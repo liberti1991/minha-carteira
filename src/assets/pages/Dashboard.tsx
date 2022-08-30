@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 
+import { useTheme } from "../hooks/theme";
+
 import { ContentHeader } from "../components/ContentHeader";
 import { SelectInput } from "../components/SelectInput";
 import { WalletBox } from "../components/WalletBox";
@@ -13,8 +15,6 @@ import { gains } from "../repositories/gains";
 import { expenses } from "../repositories/expenses";
 
 import { ListOfMonths } from "../utils/ListOfMonths";
-
-import { useTheme } from "../hooks/theme";
 
 import happySvg from "../svg/happy.svg";
 import sadSvg from "../svg/sad.svg";
@@ -41,6 +41,7 @@ export const Dashboard: React.FC = () => {
         uniqueYears.push(year);
       }
     });
+
     return uniqueYears.map((item, id) => {
       return {
         id: id,

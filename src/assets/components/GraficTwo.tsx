@@ -18,13 +18,11 @@ export const GraficTwo: React.FC<IGraficTwo> = ({ data, lineColorAmountEntry, li
   <Container>
     <header>
       <h2>Histórico de saldo</h2>
-
       <LegendContainer>
         <Legend color={lineColorAmountEntry}>
           <div></div>
           <p>Entradas</p>
         </Legend>
-
         <Legend color={lineColorAmountOutput}>
           <div></div>
           <p>Saídas</p>
@@ -52,7 +50,6 @@ const Container = styled.section`
   padding: 30px 20px;
   animation: animate3 0.5s;
   box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
-
 
   > header {
     display: flex;

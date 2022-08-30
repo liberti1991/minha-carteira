@@ -21,7 +21,6 @@ interface ITheme {
     success: string;
     info: string;
     warning: string;
-    
   };
 }
 
