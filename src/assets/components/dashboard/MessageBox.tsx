@@ -34,7 +34,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   animation: animate2 0.5s;
-  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0px 5px 10px 0px rgba(104, 103, 103, 0.344)" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
 
   > header {
     > h1 {
