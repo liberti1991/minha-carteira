@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { useAuth } from "../hooks/auth";
+import { useAuth } from "../../hooks/auth";
 
 import { Toggle } from "./Toggle";
 
-import logo from "../svg/logo.svg";
+import logo from "../../svg/logo.svg";
 
 import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward, MdAddchart } from "react-icons/md";
-import { Modal } from "./Modal";
+import { Modal } from "../modal/Modal";
+import { FormContent } from "../modal/FormContent";
 
 interface IContainerProps {
   ToggleIsOpen: boolean;
@@ -61,7 +62,11 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
           <Toggle checked={darkTheme} onChange={handleChangeTheme} />
         </span>
       </Container>
-      {modal && <Modal handleModal={handleModal} />}
+      {modal && (
+        <Modal handleModal={handleModal} title="Novos Valores">
+          <FormContent />
+        </Modal>
+      )}
     </>
   );
 };

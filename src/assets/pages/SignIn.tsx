@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useAuth } from "../hooks/auth";
 
 import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Input } from "../components/signIn/Input";
 
 import logoSvg from "../svg/logo.svg";
 

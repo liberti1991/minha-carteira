@@ -5,7 +5,7 @@ import { Toggle } from "./Toggle";
 
 import { MdClose, MdMenu } from "react-icons/md";
 
-import { emojis } from "../utils/emojis";
+import { emojis } from "../../utils/emojis";
 
 interface IStatesProps {
   ToggleIsOpen: boolean;

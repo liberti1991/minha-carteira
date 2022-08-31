@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { useAuth } from "../hooks/auth";
 
-import { Layout } from "../components/Layout";
+import { Layout } from "../components/layout/Layout";
 
 import { Dashboard } from "../pages/Dashboard";
 import { List } from "../pages/List";

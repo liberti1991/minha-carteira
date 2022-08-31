@@ -2,7 +2,7 @@ import React from "react";
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import styled from "styled-components";
 
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface IGraficthreeAndFourCard {
   title: string;

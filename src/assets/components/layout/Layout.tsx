@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { useTheme } from "../hooks/theme";
+import { useTheme } from "../../hooks/theme";
 
 import { Aside } from "./Aside";
 import { Content } from "./Content";

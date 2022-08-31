@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
 
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 interface IGraficTwo {
   data: {

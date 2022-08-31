@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 import { useTheme } from "../hooks/theme";
 
-import { ContentHeader } from "../components/ContentHeader";
+import { ContentHeader } from "../components/layout/ContentHeader";
 import { SelectInput } from "../components/SelectInput";
-import { WalletBox } from "../components/WalletBox";
-import { MessageBox } from "../components/MessageBox";
-import { GraficOne } from "../components/GraficOne";
-import { GraficTwo } from "../components/GraficTwo";
-import { GraficthreeAndFourCard } from "../components/GraficthreeAndFourCard";
+import { WalletBox } from "../components/dashboard/WalletBox";
+import { MessageBox } from "../components/dashboard/MessageBox";
+import { GraficOne } from "../components/dashboard/GraficOne";
+import { GraficTwo } from "../components/dashboard/GraficTwo";
+import { GraficthreeAndFourCard } from "../components/dashboard/GraficthreeAndFourCard";
 
 import { gains } from "../repositories/gains";
 import { expenses } from "../repositories/expenses";

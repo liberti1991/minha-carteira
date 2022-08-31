@@ -2,9 +2,9 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import CountUp from "react-countup";
 
-import dollarSvg from "../svg/dolar.svg";
-import arrowDownSvg from "../svg/arrow-down.svg";
-import arrowUpSvg from "../svg/arrow-up.svg";
+import dollarSvg from "../../svg/dolar.svg";
+import arrowDownSvg from "../../svg/arrow-down.svg";
+import arrowUpSvg from "../../svg/arrow-up.svg";
 
 interface IWalletBoxProps {
   title: string;

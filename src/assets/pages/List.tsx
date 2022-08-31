@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 import { useTheme } from "../hooks/theme";
 
-import { ContentHeader } from "../components/ContentHeader";
-import { HistoryFinanceCard } from "../components/HistoryFinanceCard";
+import { ContentHeader } from "../components/layout/ContentHeader";
+import { HistoryFinanceCard } from "../components/list/HistoryFinanceCard";
 import { SelectInput } from "../components/SelectInput";
 
 import { gains } from "../repositories/gains";
@@ -122,7 +122,7 @@ export const List = () => {
       </Filters>
       <Content>
         {data.map((item) => (
-          <HistoryFinanceCard key={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} />
+          <HistoryFinanceCard key={item.id} id={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} />
         ))}
       </Content>
     </div>
