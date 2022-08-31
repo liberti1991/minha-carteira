@@ -1,29 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { uniqueId } from "lodash";
 
 import { ListFrequency } from "../../utils/ListFrequency";
 import { ListType } from "../../utils/ListType";
 
 import { Button } from "../Button";
+import { gains } from "../../repositories/gains";
+import { expenses } from "../../repositories/expenses";
 
 interface IFormDate {
-  id?: number;
+  id?: number | string;
   description?: string;
   amount?: string | number;
   date?: string;
   type?: string;
   frequency?: string;
 }
+interface IModoProps {
+  typeMode?: string;
+}
 
-export const FormContent: React.FC = () => {
-  const { register, handleSubmit } = useForm();
+export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
+  const { register, handleSubmit } = useForm({
+    // defaultValues: {
+    //   description: "",
+    //   amount: 0,
+    //   date: 'newDateGains1',
+    //   type:  ,
+    //   frequency: 'newDateGains1',
+    // },
+  });
 
-  function teste(data: IFormDate) {
-    console.log(data);
-  }
+  const [newGains, newGainsSet] = useState<IFormDate[]>([...gains]);
+  const [newExpenses, newExpensesSet] = useState<IFormDate[]>([...expenses]);
+
+  const addNewGainsOrExpenses = (data: IFormDate) => {
+    if (typeMode === "create" && data.type === "entrada") {
+      let tempGains = [
+        ...newGains,
+        {
+          id: Number(uniqueId()),
+          description: data.description,
+          amount: data.amount,
+          date: data.date,
+          type: data.type,
+          frequency: data.frequency,
+        },
+      ];
+      newGainsSet(tempGains);
+    } else if (typeMode === "create" && data.type === "saida") {
+      let tempExpenses = [
+        ...newExpenses,
+        {
+          id: Number(uniqueId()),
+          description: data.description,
+          amount: data.amount,
+          date: data.date,
+          type: data.type,
+          frequency: data.frequency,
+        },
+      ];
+      newExpensesSet(tempExpenses);
+    }
+  };
   return (
-    <form onSubmit={handleSubmit(teste)}>
+    <form onSubmit={handleSubmit(addNewGainsOrExpenses)}>
       <ContainerInput>
         <label htmlFor="description">Descrição:</label>
         <input id="description" type="text" placeholder="Ex: Salário || Compra do mês" maxLength={100} required {...register("description")} />

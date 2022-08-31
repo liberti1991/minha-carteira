@@ -63,8 +63,8 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
         </span>
       </Container>
       {modal && (
-        <Modal handleModal={handleModal} title="Novos Valores">
-          <FormContent />
+        <Modal handleModal={handleModal} title="Novos Valores" typeMode="create">
+          <FormContent typeMode="create"/>
         </Modal>
       )}
     </>

@@ -6,8 +6,9 @@ interface IModalProps {
   handleModal(): void;
   children: React.ReactNode;
   title: string;
-  modo?: boolean;
+  modo?: string;
   editText?: string;
+  typeMode?: string;
 }
 
 export const Modal: React.FC<IModalProps> = ({ handleModal, children, title, modo, editText }) => {
@@ -16,7 +17,7 @@ export const Modal: React.FC<IModalProps> = ({ handleModal, children, title, mod
       <Overlay onClick={() => handleModal()}></Overlay>
       <Container>
         <ToggleMenu>
-          {modo ? (
+          {modo !== "create" ? (
             <h1>
               {title}: <strong>{editText}</strong>
             </h1>
