@@ -7,7 +7,7 @@ interface ISelectIputProprs {
     label: string | number;
     id: number;
   }[];
-  onChange(event: React.ChangeEvent<HTMLSelectElement>): void | undefined;
+  onChange(event: React.ChangeEvent<HTMLSelectElement>): void | undefined | boolean;
   defaulValue?: string | number;
 }
 

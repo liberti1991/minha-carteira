@@ -50,7 +50,7 @@ export const Aside: React.FC<IStatesProps> = ({ ToggleIsOpen, handleChangeTheme,
           </NavLink>
           <p onClick={() => modalSet(true)}>
             <MdAddchart />
-            New
+            Novos Valores
           </p>
           <p onClick={signOut}>
             <MdExitToApp />

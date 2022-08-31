@@ -35,7 +35,7 @@ const Container = styled.div<IContainerProps>`
       border-radius: 2px;
     }
   }
-
+  
   @media screen and (max-width: 648px) {
     flex-direction: column;
     gap: 15px;

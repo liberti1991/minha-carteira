@@ -1,45 +1,80 @@
-import { MdClose } from "react-icons/md";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
+
 import { ListFrequency } from "../utils/ListFrequency";
 import { ListType } from "../utils/ListType";
+
 import { Button } from "./Button";
-import { Input } from "./Input";
-import { SelectInput } from "./SelectInput";
+
+import { MdClose } from "react-icons/md";
 
 interface IModalProps {
   handleModal(): void;
 }
 
+interface IFormDate {
+  id?: number;
+  description?: string;
+  amount?: number;
+  date?: string;
+  type?: string;
+  frequency?: string;
+}
+
 export const Modal: React.FC<IModalProps> = ({ handleModal }) => {
+  const { register, handleSubmit } = useForm();
+
+  function teste(data: IFormDate) {
+    console.log(data);
+  }
+
   return (
     <section>
       <Overlay onClick={() => handleModal()}></Overlay>
       <Container>
-        <form>
-          <ToggleMenu>
-            <div>
-              <MdClose onClick={() => handleModal()}/>
-            </div>
-          </ToggleMenu>
+        <ToggleMenu>
+          <h1>Novos Valores </h1>
           <div>
-            <label htmlFor="description">Descrição:</label>
-            <Input id="description" type="text" maxLength={100} required />
+            <MdClose onClick={() => handleModal()} />
           </div>
+        </ToggleMenu>
+        <form onSubmit={handleSubmit(teste)}>
+          <ContainerInput>
+            <label htmlFor="description">Descrição:</label>
+            <input id="description" type="text" maxLength={100} required {...register("description")} />
+          </ContainerInput>
           <AmountAndDate>
-            <div>
+            <ContainerInput>
               <label htmlFor="amount">Valor:</label>
-              <Input id="amount" type="number" maxLength={100} required />
-            </div>
-            <div>
+              <input id="amount" type="number" maxLength={100} required {...register("amount")} />
+            </ContainerInput>
+            <ContainerInput>
               <label htmlFor="date">Data:</label>
-              <Input id="date" type="date" required />
-            </div>
+              <input id="date" type="date" required {...register("date")} />
+            </ContainerInput>
           </AmountAndDate>
-          <Selects>
-            <SelectInput options={ListType} onChange={() => {}} />
-            <SelectInput options={ListFrequency} onChange={() => {}} />
-          </Selects>
-
+          <ContainerSelect>
+            <Selects>
+              <label htmlFor="type">Fluxo:</label>
+              <select id="type" {...register("type")}>
+                {ListType.map((option) => (
+                  <option key={option.id} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </Selects>
+            <Selects>
+              <label htmlFor="frequency">Tipo:</label>
+              <select id="frequency" {...register("frequency")}>
+                {ListFrequency.map((option) => (
+                  <option key={option.id} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </Selects>
+          </ContainerSelect>
           <Button>Salvar</Button>
         </form>
       </Container>
@@ -67,17 +102,26 @@ const Container = styled.section`
   background-color: ${(props) => props.theme.colors.tertiary};
   border-radius: 10px;
   padding: 20px;
-
-  label {
-    color: ${(props) => props.theme.colors.white};
-    font-size: 16px;
-    font-weight: 500;
-  }
+  box-shadow: ${(props) => (props.theme.title === "dark" ? " 0 2px 10px #ffffff39;" : "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)")};
 `;
 
 const ToggleMenu = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  > h1 {
+    color: ${(props) => props.theme.colors.white};
+
+    ::after {
+      content: "";
+      display: block;
+      width: 55px;
+      border-bottom: 10px solid ${(props) => props.theme.colors.warning};
+      border-radius: 2px;
+    }
+  }
+
   > div {
     display: flex;
     align-items: center;
@@ -85,7 +129,7 @@ const ToggleMenu = styled.div`
     width: 35px;
     height: 35px;
     border-radius: 5px;
-    background-color: #fb2222;
+    background-color: ${(props) => props.theme.colors.warning};
     transition: all 0.3s;
 
     :hover {
@@ -99,14 +143,50 @@ const ToggleMenu = styled.div`
   }
 `;
 
+const ContainerInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  > label {
+    color: ${(props) => props.theme.colors.white};
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  > input {
+    width: 100%;
+    padding: 6px 15px;
+    border-radius: 5px;
+  }
+`;
+
 const AmountAndDate = styled.div`
   display: flex;
+  align-items: center;
   gap: 15px;
   padding: 10px 0;
 `;
 
 const Selects = styled.div`
   display: flex;
+  flex-direction: column;
   padding: 10px 0;
+  gap: 5px;
+
+  > label {
+    color: ${(props) => props.theme.colors.white};
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  > select {
+    padding: 5px 15px;
+    border-radius: 5px;
+  }
+`;
+
+const ContainerSelect = styled.div`
+  display: flex;
   gap: 15px;
 `;

@@ -64,7 +64,8 @@ const Form = styled.form`
 
   > h1 {
     color: ${(props) => props.theme.colors.white};
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    
     ::after {
       content: "";
       display: block;
