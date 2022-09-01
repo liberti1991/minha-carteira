@@ -23,5 +23,4 @@ export const gains = [
   {id: 1121, "description": "Freela",  "amount": "826.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-10-10" },
   {id: 1122, "description": "Freela",  "amount": "840.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-11-10" },
   {id: 1123, "description": "Freela",  "amount": "649.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-12-10" },
-  ]
-  
+]  

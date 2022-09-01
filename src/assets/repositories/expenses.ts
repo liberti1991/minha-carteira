@@ -1,4 +1,5 @@
 export const expenses = [
+
   {id: 110, "description":"Pizza",                 "amount":"750.01", "type":"saída","frequency":"eventual",  "date":"2022-01-19"},
   {id: 111, "description":"Energia elétrica",      "amount":"150.55","type":"saída","frequency":"recorrente","date":"2022-01-10"},
   {id: 112, "description":"Água",                  "amount":"75.55", "type":"saída","frequency":"recorrente","date":"2022-01-15"},
@@ -49,4 +50,5 @@ export const expenses = [
   {id: 1147, "description":"Compras do mês",        "amount":"700.00","type":"saída","frequency":"recorrente","date":"2022-08-25"},
   {id: 1148, "description":"Cafeteira",             "amount":"250.00","type":"saída","frequency":"eventual",  "date":"2022-07-26"},
   {id: 1149, "description":"Pizza",                 "amount":"60.00", "type":"saída","frequency":"eventual",  "date":"2022-07-19"},
+
 ]

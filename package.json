@@ -10,6 +10,8 @@
     "@types/node": "^16.11.56",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
+    "json-server": "^0.17.0",
     "react": "^18.2.0",
     "react-countup": "^6.3.0",
     "react-dom": "^18.2.0",
@@ -26,6 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "json-server server.json -p 5000 -w -d 500",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

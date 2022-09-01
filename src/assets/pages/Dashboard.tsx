@@ -1,5 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
+
+import { api } from "../repositories/api";
 
 import { useTheme } from "../hooks/theme";
 
@@ -11,8 +13,7 @@ import { GraficOne } from "../components/dashboard/GraficOne";
 import { GraficTwo } from "../components/dashboard/GraficTwo";
 import { GraficthreeAndFourCard } from "../components/dashboard/GraficthreeAndFourCard";
 
-import { gains } from "../repositories/gains";
-import { expenses } from "../repositories/expenses";
+import { Loading } from "../components/layout/Loading";
 
 import { ListOfMonths } from "../utils/ListOfMonths";
 
@@ -21,8 +22,12 @@ import sadSvg from "../svg/sad.svg";
 import grinningSvg from "../svg/grinning.svg";
 import opsSvg from "../svg/ops.svg";
 
-export const Dashboard: React.FC = () => {
+export const Dashboard = () => {
   const { theme } = useTheme();
+
+  const [gains, gainsSet] = useState<any>([]);
+  const [expenses, expensesSet] = useState<any>([]);
+
   // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
 
@@ -55,7 +60,7 @@ export const Dashboard: React.FC = () => {
   const totalGains = useMemo(() => {
     let total: number = 0;
 
-    gains.forEach((item) => {
+    gains?.forEach((item: { date: string | number | Date; amount: any }) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
@@ -70,7 +75,7 @@ export const Dashboard: React.FC = () => {
   const totalExpenses = useMemo(() => {
     let total: number = 0;
 
-    expenses.forEach((item) => {
+    expenses.forEach((item: { date: string | number | Date; amount: any }) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
       const month = date.getMonth() + 1;
@@ -149,7 +154,7 @@ export const Dashboard: React.FC = () => {
   const graficTwo = useMemo(() => {
     return ListOfMonths.map((item) => {
       let amountEntry = 0;
-      gains.forEach((gain) => {
+      gains?.forEach((gain: { date: string | number | Date; amount: any }) => {
         const date = new Date(gain.date);
         const gainMonth = date.getMonth();
         const gainYear = date.getFullYear();
@@ -160,7 +165,7 @@ export const Dashboard: React.FC = () => {
       });
 
       let amountOutput = 0;
-      expenses.forEach((expense) => {
+      expenses.forEach((expense: { date: string | number | Date; amount: any }) => {
         const date = new Date(expense.date);
         const expenseMonth = date.getMonth();
         const expenseYear = date.getFullYear();
@@ -192,14 +197,14 @@ export const Dashboard: React.FC = () => {
     let amountEventual = 0;
 
     expenses
-      .filter((expense) => {
+      .filter((expense: { date: string | number | Date }) => {
         const date = new Date(expense.date);
         const yaer = date.getFullYear();
         const month = date.getMonth() + 1;
 
         return month === monthSelected && yaer === yearSelected;
       })
-      .forEach((expense) => {
+      .forEach((expense: { frequency: string; amount: any }) => {
         if (expense.frequency === "recorrente") return (amountRecurrent += Number(expense.amount));
 
         if (expense.frequency === "eventual") return (amountEventual += Number(expense.amount));
@@ -233,14 +238,14 @@ export const Dashboard: React.FC = () => {
     let amountEventual = 0;
 
     gains
-      .filter((gain) => {
+      ?.filter((gain: { date: string | number | Date }) => {
         const date = new Date(gain.date);
         const yaer = date.getFullYear();
         const month = date.getMonth() + 1;
 
         return month === monthSelected && yaer === yearSelected;
       })
-      .forEach((gain) => {
+      .forEach((gain: { frequency: string; amount: any }) => {
         if (gain.frequency === "recorrente") return (amountRecurrent += Number(gain.amount));
 
         if (gain.frequency === "eventual") return (amountEventual += Number(gain.amount));
@@ -283,28 +288,46 @@ export const Dashboard: React.FC = () => {
     }
   }, [totalBalance, theme]);
 
+  useEffect(() => {
+    api
+      .get("gains")
+      .then((response) => gainsSet(response.data))
+      .catch((error) => console.log("erro:", error));
+
+    api
+      .get("expenses")
+      .then((response) => expensesSet(response.data))
+      .catch((error) => console.log("erro:", error));
+  }, []);
+
   return (
     <>
-      <ContentHeader title="Dashboard" lineColor="#f7931b">
-        <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(Number(event.target.value))} defaulValue={monthSelected} />
-        <SelectInput options={years} onChange={(event) => yearSelectedSet(Number(event.target.value))} defaulValue={yearSelected} />
-      </ContentHeader>
-      <SectionWallet>
-        <WalletBox amount={totalBalance} title="Saldo" footerLabel="Atualizado com base nas entradas e saídas" icon="dollar" color={changeColor} />
-        <WalletBox amount={totalGains} title="Entradas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromUp" color="#2109d7" />
-        <WalletBox amount={totalExpenses} title="Saídas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromDown" color="darkorange" />
-      </SectionWallet>
-      <SectionBox>
-        <MessageBox title={message.title} description={message.description} footerText={message.footerText} icon={message.icon} />
-        <GraficOne relationExpensesVersusGains={relationExpensesVersusGains} />
-      </SectionBox>
-      <SectionGraficTwo>
-        <GraficTwo data={graficTwo} lineColorAmountEntry="#2109d7" lineColorAmountOutput="darkorange" />
-      </SectionGraficTwo>
-      <SectionGraficThree>
-        <GraficthreeAndFourCard title="Entradas" date={graficThreeGains} />
-        <GraficthreeAndFourCard title="Saídas" date={graficThreeExpenses} />
-      </SectionGraficThree>
+      {gains.length === 0 && expenses.length === 0 ? (
+        <Loading />
+      ) : (
+        <>
+          <ContentHeader title="Dashboard" lineColor="#f7931b">
+            <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(Number(event.target.value))} defaulValue={monthSelected} />
+            <SelectInput options={years} onChange={(event) => yearSelectedSet(Number(event.target.value))} defaulValue={yearSelected} />
+          </ContentHeader>
+          <SectionWallet>
+            <WalletBox amount={totalBalance} title="Saldo" footerLabel="Atualizado com base nas entradas e saídas" icon="dollar" color={changeColor} />
+            <WalletBox amount={totalGains} title="Entradas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromUp" color="#2109d7" />
+            <WalletBox amount={totalExpenses} title="Saídas" footerLabel="Atualizado com base nas entradas e saídas" icon="arromDown" color="darkorange" />
+          </SectionWallet>
+          <SectionBox>
+            <MessageBox title={message.title} description={message.description} footerText={message.footerText} icon={message.icon} />
+            <GraficOne relationExpensesVersusGains={relationExpensesVersusGains} />
+          </SectionBox>
+          <SectionGraficTwo>
+            <GraficTwo data={graficTwo} lineColorAmountEntry="#2109d7" lineColorAmountOutput="darkorange" />
+          </SectionGraficTwo>
+          <SectionGraficThree>
+            <GraficthreeAndFourCard title="Entradas" date={graficThreeGains} />
+            <GraficthreeAndFourCard title="Saídas" date={graficThreeExpenses} />
+          </SectionGraficThree>
+        </>
+      )}
     </>
   );
 };

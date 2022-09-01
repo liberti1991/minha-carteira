@@ -2,14 +2,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import { api } from "../repositories/api";
+
 import { useTheme } from "../hooks/theme";
 
 import { ContentHeader } from "../components/layout/ContentHeader";
 import { HistoryFinanceCard } from "../components/list/HistoryFinanceCard";
 import { SelectInput } from "../components/SelectInput";
 
-import { gains } from "../repositories/gains";
-import { expenses } from "../repositories/expenses";
+import { Loading } from "../components/layout/Loading";
 
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatDate } from "../utils/formatDate";
@@ -26,6 +27,9 @@ interface IData {
 
 export const List = () => {
   const { theme } = useTheme();
+
+  const [gains, gainsSet] = useState<any>([]);
+  const [expenses, expensesSet] = useState<any>([]);
 
   //state DB
   const [data, dataSet] = useState<IData[]>([]);
@@ -49,7 +53,7 @@ export const List = () => {
   const years = useMemo(() => {
     let uniqueYears: number[] = [];
 
-    paramsRoutes.date.forEach((item) => {
+    paramsRoutes.date.forEach((item: { date: string | number | Date }) => {
       const date = new Date(item.date);
       const year = date.getFullYear();
 
@@ -80,13 +84,13 @@ export const List = () => {
 
   useEffect(() => {
     const filteredDate = paramsRoutes.date
-      .filter((item) => {
+      .filter((item: { date: string | number | Date; frequency: string }) => {
         const date = new Date(item.date);
         const month = date.getMonth() + 1;
         const year = date.getFullYear();
         return month === monthSelected && year === yearSelected && filterButtonSelected.includes(item.frequency);
       })
-      .map((item) => {
+      .map((item: { id: any; description: any; amount: any; frequency: string; date: string }) => {
         return {
           id: item.id,
           description: item.description,
@@ -106,26 +110,44 @@ export const List = () => {
     dataSet(filteredDate);
   }, [paramsRoutes, yearSelected, monthSelected, filterButtonSelected, theme]);
 
+  useEffect(() => {
+    api
+      .get("gains")
+      .then((response) => gainsSet(response.data))
+      .catch((error) => console.log("erro:", error));
+
+    api
+      .get("expenses")
+      .then((response) => expensesSet(response.data))
+      .catch((error) => console.log("erro:", error));
+  }, []);
+
   return (
-    <div>
-      <ContentHeader title={paramsRoutes.title} lineColor={paramsRoutes.lineColor}>
-        <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(Number(event.target.value))} defaulValue={monthSelected} />
-        <SelectInput options={years} onChange={(event) => yearSelectedSet(Number(event.target.value))} defaulValue={yearSelected} />
-      </ContentHeader>
-      <Filters>
-        <button type="button" className={`tag-filter tag-filter-recurrent ${filterButtonSelected.includes("recorrente") && "tag-active"}`} onClick={() => handleFrequencyClick("recorrente")}>
-          Recorrentes
-        </button>
-        <button type="button" className={`tag-filter tag-filter-eventual ${filterButtonSelected.includes("eventual") && "tag-active"}`} onClick={() => handleFrequencyClick("eventual")}>
-          Eventuais
-        </button>
-      </Filters>
-      <Content>
-        {data.map((item) => (
-          <HistoryFinanceCard key={item.id} id={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} />
-        ))}
-      </Content>
-    </div>
+    <>
+      {gains.length === 0 && expenses.length === 0 ? (
+        <Loading />
+      ) : (
+        <>
+          <ContentHeader title={paramsRoutes.title} lineColor={paramsRoutes.lineColor}>
+            <SelectInput options={ListOfMonths} onChange={(event) => monthSelectedSet(Number(event.target.value))} defaulValue={monthSelected} />
+            <SelectInput options={years} onChange={(event) => yearSelectedSet(Number(event.target.value))} defaulValue={yearSelected} />
+          </ContentHeader>
+          <Filters>
+            <button type="button" className={`tag-filter tag-filter-recurrent ${filterButtonSelected.includes("recorrente") && "tag-active"}`} onClick={() => handleFrequencyClick("recorrente")}>
+              Recorrentes
+            </button>
+            <button type="button" className={`tag-filter tag-filter-eventual ${filterButtonSelected.includes("eventual") && "tag-active"}`} onClick={() => handleFrequencyClick("eventual")}>
+              Eventuais
+            </button>
+          </Filters>
+          <Content>
+            {data.map((item) => (
+              <HistoryFinanceCard key={item.id} id={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} />
+            ))}
+          </Content>
+        </>
+      )}
+    </>
   );
 };
 

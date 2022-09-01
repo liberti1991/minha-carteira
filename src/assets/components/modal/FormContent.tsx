@@ -11,13 +11,14 @@ import { gains } from "../../repositories/gains";
 import { expenses } from "../../repositories/expenses";
 
 interface IFormDate {
-  id?: number | string;
+  id?: number ;
   description?: string;
   amount?: string | number;
   date?: string;
   type?: string;
   frequency?: string;
 }
+
 interface IModoProps {
   typeMode?: string;
 }
@@ -44,12 +45,13 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
           id: Number(uniqueId()),
           description: data.description,
           amount: data.amount,
-          date: data.date,
           type: data.type,
           frequency: data.frequency,
+          date: data.date,
         },
       ];
-      newGainsSet(tempGains);
+      console.log("Novo:", tempGains);
+      return newGainsSet(tempGains);
     } else if (typeMode === "create" && data.type === "saida") {
       let tempExpenses = [
         ...newExpenses,
@@ -62,7 +64,8 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
           frequency: data.frequency,
         },
       ];
-      newExpensesSet(tempExpenses);
+      console.log("Novo:", tempExpenses);
+      return newExpensesSet(tempExpenses);
     }
   };
   return (
