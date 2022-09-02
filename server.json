@@ -1,80 +1,785 @@
 {
+  "user": [
+    {
+      "idUser": 333,
+      "email": "teste@teste.com",
+      "password": "teste",
+      "name": "User Teste"
+    },
+    {
+      "idUser": 334,
+      "email": "edgar@teste.com",
+      "password": "edgar",
+      "name": "Edgar Elias"
+    }
+  ],
   "gains": [
-    {"id": 110,  "description":  "Salário", "amount": "2300.52", "type": "entrada", "frequency": "recorrente", "date": "2022-01-10" }, 
-    {"id": 111,  "description":  "Salário", "amount": "150.13",  "type": "entrada", "frequency": "recorrente", "date": "2022-02-17" }, 
-    {"id": 112,  "description":  "Salário", "amount": "2500.23", "type": "entrada", "frequency": "recorrente", "date": "2022-03-10" }, 
-    {"id": 113,  "description":  "Salário", "amount": "900.23",  "type": "entrada", "frequency": "recorrente", "date": "2022-04-21" }, 
-    {"id": 114,  "description":  "Salário", "amount": "950.92",  "type": "entrada", "frequency": "recorrente", "date": "2022-05-23" }, 
-    {"id": 115,  "description":  "Salário", "amount": "2500.25", "type": "entrada", "frequency": "recorrente", "date": "2022-06-10" }, 
-    {"id": 116,  "description":  "Salário", "amount": "2500.18", "type": "entrada", "frequency": "recorrente", "date": "2022-07-10" }, 
-    {"id": 117,  "description":  "Salário", "amount": "2500.15", "type": "entrada", "frequency": "recorrente", "date": "2022-08-10" }, 
-    {"id": 118,  "description":  "Salário", "amount": "750.99",  "type": "entrada", "frequency": "recorrente", "date": "2022-09-10" }, 
-    {"id": 119,  "description":  "Salário", "amount": "2500.00", "type": "entrada", "frequency": "recorrente", "date": "2022-10-10" },
-    {"id": 1110, "description":  "Salário", "amount": "2500.00", "type": "entrada", "frequency": "recorrente", "date": "2022-11-10" },
-    {"id": 1111, "description":  "Salário", "amount": "2500.00", "type": "entrada", "frequency": "recorrente", "date": "2022-12-10" },
-    {"id": 1112, "description":  "Freela",  "amount": "2500.00", "type": "entrada", "frequency": "eventual",   "date": "2022-01-10" },
-    {"id": 1113, "description":  "Freela",  "amount": "354.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-02-10" },
-    {"id": 1114, "description":  "Freela",  "amount": "394.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-03-10" },
-    {"id": 1115, "description":  "Freela",  "amount": "354.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-04-10" },
-    {"id": 1116, "description":  "Freela",  "amount": "465.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-05-10" },
-    {"id": 1117, "description":  "Freela",  "amount": "98.00",   "type": "entrada", "frequency": "eventual",   "date": "2022-06-10" },
-    {"id": 1118, "description":  "Freela",  "amount": "672.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-07-10" },
-    {"id": 1119, "description":  "Freela",  "amount": "218.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-08-10" },
-    {"id": 1120, "description":  "Freela",  "amount": "379.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-09-10" },
-    {"id": 1121, "description":  "Freela",  "amount": "826.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-10-10" },
-    {"id": 1122, "description":  "Freela",  "amount": "840.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-11-10" },
-    {"id": 1123, "description":  "Freela",  "amount": "649.00",  "type": "entrada", "frequency": "eventual",   "date": "2022-12-10" }
+    {
+      "id": 110,
+      "idUser": 333,
+      "description": "Salário",
+      "amount": "2300.52",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-01-10"
+    },
+    {
+      "id": 111,
+      "idUser": 334,
+      "description": "Salário",
+      "amount": "150.13",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-02-17"
+    },
+    {
+      "id": 112,
+      "idUser": 333,
+      "description": "Salário",
+      "amount": "2500.23",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-03-10"
+    },
+    {
+      "id": 113,
+      "idUser": 334,
+      "description": "Salário",
+      "amount": "900.23",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-04-21"
+    },
+    {
+      "id": 114,
+      "idUser": 333,
+      "description": "Salário",
+      "amount": "950.92",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-05-23"
+    },
+    {
+      "id": 115,
+      "idUser": 334,
+      "description": "Salário",
+      "amount": "2500.25",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-06-10"
+    },
+    {
+      "id": 116,
+      "idUser": 333,
+      "description": "Salário",
+      "amount": "2500.18",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-07-10"
+    },
+    {
+      "id": 117,
+      "idUser": 334,
+      "description": "Salário",
+      "amount": "2500.15",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-08-10"
+    },
+    {
+      "id": 119,
+      "idUser": 333,
+      "description": "Salário",
+      "amount": "2500.00",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-10-10"
+    },
+    {
+      "id": 1110,
+      "idUser": 334,
+      "description": "Salário",
+      "amount": "2500.00",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-11-10"
+    },
+    {
+      "id": 1111,
+      "idUser": 333,
+      "description": "Salário",
+      "amount": "2500.00",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-12-10"
+    },
+    {
+      "id": 1112,
+      "idUser": 334,
+      "description": "Freela",
+      "amount": "2500.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-01-10"
+    },
+    {
+      "id": 1113,
+      "idUser": 333,
+      "description": "Freela",
+      "amount": "354.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-02-10"
+    },
+    {
+      "id": 1114,
+      "idUser": 334,
+      "description": "Freela",
+      "amount": "394.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-03-10"
+    },
+    {
+      "id": 1115,
+      "idUser": 333,
+      "description": "Freela",
+      "amount": "354.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-04-10"
+    },
+    {
+      "id": 1116,
+      "idUser": 334,
+      "description": "Freela",
+      "amount": "465.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-05-10"
+    },
+    {
+      "id": 1117,
+      "idUser": 333,
+      "description": "Freela",
+      "amount": "98.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-06-10"
+    },
+    {
+      "id": 1118,
+      "idUser": 334,
+      "description": "Freela",
+      "amount": "672.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-07-10"
+    },
+    {
+      "id": 1119,
+      "idUser": 333,
+      "description": "Freela",
+      "amount": "218.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-08-10"
+    },
+    {
+      "id": 1121,
+      "idUser": 333,
+      "description": "Freela",
+      "amount": "826.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-10-10"
+    },
+    {
+      "id": 1122,
+      "idUser": 334,
+      "description": "Freela",
+      "amount": "840.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-11-10"
+    },
+    {
+      "id": 1123,
+      "idUser": 333,
+      "description": "Freela",
+      "amount": "649.00",
+      "type": "entrada",
+      "frequency": "eventual",
+      "date": "2022-12-10"
+    },
+    {
+      "id": 1,
+      "idUser": 334,
+      "description": "Treta",
+      "amount": "1000.00",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-01"
+    },
+    {
+      "id": 3,
+      "idUser": 333,
+      "description": "compra do mes teste 01",
+      "amount": "12000",
+      "type": "saida",
+      "frequency": "recorrente",
+      "date": "2022-09-01"
+    },
+    {
+      "id": 2,
+      "idUser": 333,
+      "description": "teste",
+      "amount": "150",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-10"
+    },
+    {
+      "id": 6,
+      "idUser": 333,
+      "description": "teste",
+      "amount": "80000",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-22"
+    },
+    {
+      "id": 7,
+      "idUser": 333,
+      "description": "teste",
+      "amount": "80000",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-22"
+    },
+    {
+      "id": 8,
+      "idUser": 333,
+      "description": "teste",
+      "amount": "80000",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-22"
+    },
+    {
+      "id": 9,
+      "idUser": 333,
+      "description": "teste",
+      "amount": "80000",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-22"
+    },
+    {
+      "id": 10,
+      "idUser": 333,
+      "description": "teste",
+      "amount": "80000",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-22"
+    },
+    {
+      "id": 11,
+      "idUser": 334,
+      "description": "salario",
+      "amount": "9999999",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-30"
+    }
   ],
   "expenses": [
-    {"id": 110,  "description":"Pizza",                 "amount":"750.01", "type":"saída", "frequency":"eventual",   "date":"2022-01-19"},
-    {"id": 111,  "description":"Energia elétrica",      "amount":"150.55", "type":"saída", "frequency":"recorrente", "date":"2022-01-10"},
-    {"id": 112,  "description":"Água",                  "amount":"75.55",  "type":"saída", "frequency":"recorrente", "date":"2022-01-15"},
-    {"id": 113,  "description": "Telefone",             "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-01-23"},
-    {"id": 114,  "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"eventual",   "date":"2022-10-23"},
-    {"id": 115,  "description":"Compras do mês",        "amount":"625.78", "type":"saída", "frequency":"recorrente", "date":"2022-01-23"},
-    {"id": 116,  "description":"Lanche",                "amount":"45.70",  "type":"saída", "frequency":"eventual",   "date":"2022-01-23"},
-    {"id": 117,  "description":"Blusa",                 "amount":"95.70",  "type":"saída", "frequency":"eventual",   "date":"2022-01-23"},
-    {"id": 118,  "description":"Energia elétrica",      "amount":"125.55", "type":"saída", "frequency":"recorrente", "date":"2022-02-10"},
-    {"id": 119,  "description":"Água",                  "amount":"90.15",  "type":"saída", "frequency":"recorrente", "date":"2022-02-15"},
-    {"id": 1110, "description":"Telefone",              "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-02-23"},
-    {"id": 1111, "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"recorrente", "date":"2022-02-23"},
-    {"id": 1112, "description":"Compras do mês",        "amount":"540.00", "type":"saída", "frequency":"recorrente", "date":"2022-02-25"},
-    {"id": 1113, "description":"Parcela do Celular 1/5","amount":"150.99", "type":"saída", "frequency":"eventual",   "date":"2022-02-26"},
-    {"id": 1114, "description":"Cinema",                "amount":"45.00",  "type":"saída", "frequency":"eventual",   "date":"2022-02-23"},
-    {"id": 1115, "description":"Energia elétrica",      "amount":"97.00",  "type":"saída", "frequency":"recorrente", "date":"2022-03-10"},
-    {"id": 1116, "description":"Água",                  "amount":"100.10", "type":"saída", "frequency":"eventual",   "date":"2022-09-15"},
-    {"id": 1117, "description":"Telefone",              "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-03-23"},
-    {"id": 1118, "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"eventual",   "date":"2022-03-23"},
-    {"id": 1119, "description":"Compras do mês",        "amount":"800.50", "type":"saída", "frequency":"recorrente", "date":"2022-12-17"},
-    {"id": 1120, "description":"Parcela do Celular 2/5","amount":"150.99", "type":"saída", "frequency":"eventual",   "date":"2022-12-18"},
-    {"id": 1121, "description":"Troca de Oléo do carro","amount":"90.00",  "type":"saída", "frequency":"eventual",   "date":"2022-03-23"},
-    {"id": 1122, "description":"Energia elétrica",      "amount":"75.99",  "type":"saída", "frequency":"eventual",   "date":"2022-08-10"},
-    {"id": 1123, "description":"Água",                  "amount":"80.33",  "type":"saída", "frequency":"recorrente", "date":"2022-04-15"},
-    {"id": 1124, "description":"Telefone",              "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-04-23"},
-    {"id": 1125, "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"recorrente", "date":"2022-04-23"},
-    {"id": 1126, "description":"Compras do mês",        "amount":"600.00", "type":"saída", "frequency":"recorrente", "date":"2022-11-25"},
-    {"id": 1127, "description":"Parcela do Celular 3/5","amount":"150.99", "type":"saída", "frequency":"eventual",   "date":"2022-11-26"},
-    {"id": 1128, "description":"Ebook de React Js",     "amount":"85.95",  "type":"saída", "frequency":"eventual",   "date":"2022-04-13"},
-    {"id": 1129, "description":"Energia elétrica",      "amount":"125.55", "type":"saída", "frequency":"recorrente", "date":"2022-05-10"},
-    {"id": 1130, "description":"Água",                  "amount":"90.15",  "type":"saída", "frequency":"recorrente", "date":"2022-05-15"},
-    {"id": 1131, "description":"Telefone",              "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-10-23"},
-    {"id": 1132, "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"recorrente", "date":"2022-10-23"},
-    {"id": 1133, "description":"Compras do mês",        "amount":"540.00", "type":"saída", "frequency":"recorrente", "date":"2022-05-25"},
-    {"id": 1134, "description":"Parcela do Celular 4/5","amount":"150.99", "type":"saída", "frequency":"eventual",   "date":"2022-05-26"},
-    {"id": 1135, "description":"Blusa Iron Man",        "amount":"150.00", "type":"saída", "frequency":"eventual",   "date":"2022-01-23"},
-    {"id": 1136, "description":"Energia elétrica",      "amount":"200.00", "type":"saída", "frequency":"recorrente", "date":"2022-09-10"},
-    {"id": 1137, "description":"Água",                  "amount":"150.00", "type":"saída", "frequency":"recorrente", "date":"2022-09-15"},
-    {"id": 1138, "description":"Telefone",              "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-06-23"},
-    {"id": 1139, "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"recorrente", "date":"2022-06-23"},
-    {"id": 1140, "description":"Compras do mês",        "amount":"559.15", "type":"saída", "frequency":"recorrente", "date":"2022-06-25"},
-    {"id": 1141, "description":"Parcela do Celular 5/5","amount":"150.99", "type":"saída", "frequency":"eventual",   "date":"2022-06-26"},
-    {"id": 1142, "description":"Perfume",               "amount":"250.00", "type":"saída", "frequency":"eventual",   "date":"2022-06-21"},
-    {"id": 1143, "description":"Energia elétrica",      "amount":"250.00", "type":"saída", "frequency":"recorrente", "date":"2022-07-10"},
-    {"id": 1144, "description":"Água",                  "amount":"90.00",  "type":"saída", "frequency":"recorrente", "date":"2022-07-15"},
-    {"id": 1145, "description":"Telefone",              "amount":"99.99",  "type":"saída", "frequency":"recorrente", "date":"2022-08-23"},
-    {"id": 1146, "description":"Plano de Saúde",        "amount":"300.00", "type":"saída", "frequency":"recorrente", "date":"2022-08-23"},
-    {"id": 1147, "description":"Compras do mês",        "amount":"700.00", "type":"saída", "frequency":"recorrente", "date":"2022-08-25"},
-    {"id": 1148, "description":"Cafeteira",             "amount":"250.00", "type":"saída", "frequency":"eventual",   "date":"2022-07-26"},
-    {"id": 1149, "description":"Pizza",                 "amount":"60.00",  "type":"saída", "frequency":"eventual",   "date":"2022-07-19"}
+    {
+      "id": 110,
+      "idUser": 334,
+      "description": "Pizza",
+      "amount": "750.01",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-01-19"
+    },
+    {
+      "id": 111,
+      "idUser": 333,
+      "description": "Energia elétrica",
+      "amount": "150.55",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-01-10"
+    },
+    {
+      "id": 112,
+      "idUser": 334,
+      "description": "Água",
+      "amount": "75.55",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-01-15"
+    },
+    {
+      "id": 113,
+      "idUser": 333,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-01-23"
+    },
+    {
+      "id": 114,
+      "idUser": 334,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-10-23"
+    },
+    {
+      "id": 115,
+      "idUser": 333,
+      "description": "Compras do mês",
+      "amount": "625.78",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-01-23"
+    },
+    {
+      "id": 116,
+      "idUser": 334,
+      "description": "Lanche",
+      "amount": "45.70",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-01-23"
+    },
+    {
+      "id": 117,
+      "idUser": 333,
+      "description": "Blusa",
+      "amount": "95.70",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-01-23"
+    },
+    {
+      "id": 118,
+      "idUser": 334,
+      "description": "Energia elétrica",
+      "amount": "125.55",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-02-10"
+    },
+    {
+      "id": 119,
+      "idUser": 333,
+      "description": "Água",
+      "amount": "90.15",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-02-15"
+    },
+    {
+      "id": 1110,
+      "idUser": 334,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-02-23"
+    },
+    {
+      "id": 1111,
+      "idUser": 333,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-02-23"
+    },
+    {
+      "id": 1112,
+      "idUser": 334,
+      "description": "Compras do mês",
+      "amount": "540.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-02-25"
+    },
+    {
+      "id": 1113,
+      "idUser": 333,
+      "description": "Parcela do Celular 1/5",
+      "amount": "150.99",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-02-26"
+    },
+    {
+      "id": 1114,
+      "idUser": 334,
+      "description": "Cinema",
+      "amount": "45.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-02-23"
+    },
+    {
+      "id": 1115,
+      "idUser": 333,
+      "description": "Energia elétrica",
+      "amount": "97.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-03-10"
+    },
+    {
+      "id": 1116,
+      "idUser": 334,
+      "description": "Água",
+      "amount": "100.10",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-09-15"
+    },
+    {
+      "id": 1117,
+      "idUser": 333,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-03-23"
+    },
+    {
+      "id": 1118,
+      "idUser": 334,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-03-23"
+    },
+    {
+      "id": 1119,
+      "idUser": 333,
+      "description": "Compras do mês",
+      "amount": "800.50",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-12-17"
+    },
+    {
+      "id": 1120,
+      "idUser": 334,
+      "description": "Parcela do Celular 2/5",
+      "amount": "150.99",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-12-18"
+    },
+    {
+      "id": 1121,
+      "idUser": 333,
+      "description": "Troca de Oléo do carro",
+      "amount": "90.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-03-23"
+    },
+    {
+      "id": 1122,
+      "idUser": 334,
+      "description": "Energia elétrica",
+      "amount": "75.99",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-08-10"
+    },
+    {
+      "id": 1123,
+      "idUser": 333,
+      "description": "Água",
+      "amount": "80.33",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-04-15"
+    },
+    {
+      "id": 1124,
+      "idUser": 334,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-04-23"
+    },
+    {
+      "id": 1125,
+      "idUser": 333,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-04-23"
+    },
+    {
+      "id": 1126,
+      "idUser": 334,
+      "description": "Compras do mês",
+      "amount": "600.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-11-25"
+    },
+    {
+      "id": 1127,
+      "idUser": 333,
+      "description": "Parcela do Celular 3/5",
+      "amount": "150.99",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-11-26"
+    },
+    {
+      "id": 1128,
+      "idUser": 334,
+      "description": "Ebook de React Js",
+      "amount": "85.95",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-04-13"
+    },
+    {
+      "id": 1129,
+      "idUser": 333,
+      "description": "Energia elétrica",
+      "amount": "125.55",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-05-10"
+    },
+    {
+      "id": 1130,
+      "idUser": 334,
+      "description": "Água",
+      "amount": "90.15",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-05-15"
+    },
+    {
+      "id": 1131,
+      "idUser": 333,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-10-23"
+    },
+    {
+      "id": 1132,
+      "idUser": 334,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-10-23"
+    },
+    {
+      "id": 1133,
+      "idUser": 333,
+      "description": "Compras do mês",
+      "amount": "540.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-05-25"
+    },
+    {
+      "id": 1134,
+      "idUser": 334,
+      "description": "Parcela do Celular 4/5",
+      "amount": "150.99",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-05-26"
+    },
+    {
+      "id": 1135,
+      "idUser": 333,
+      "description": "Blusa Iron Man",
+      "amount": "150.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-01-23"
+    },
+    {
+      "id": 1136,
+      "idUser": 334,
+      "description": "Energia elétrica",
+      "amount": "200.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-09-10"
+    },
+    {
+      "id": 1137,
+      "idUser": 333,
+      "description": "Água",
+      "amount": "150.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-09-15"
+    },
+    {
+      "id": 1138,
+      "idUser": 334,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-06-23"
+    },
+    {
+      "id": 1139,
+      "idUser": 333,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-06-23"
+    },
+    {
+      "id": 1140,
+      "idUser": 334,
+      "description": "Compras do mês",
+      "amount": "559.15",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-06-25"
+    },
+    {
+      "id": 1141,
+      "idUser": 333,
+      "description": "Parcela do Celular 5/5",
+      "amount": "150.99",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-06-26"
+    },
+    {
+      "id": 1142,
+      "idUser": 334,
+      "description": "Perfume",
+      "amount": "250.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-06-21"
+    },
+    {
+      "id": 1143,
+      "idUser": 333,
+      "description": "Energia elétrica",
+      "amount": "250.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-07-10"
+    },
+    {
+      "id": 1144,
+      "idUser": 334,
+      "description": "Água",
+      "amount": "90.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-07-15"
+    },
+    {
+      "id": 1145,
+      "idUser": 333,
+      "description": "Telefone",
+      "amount": "99.99",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-08-23"
+    },
+    {
+      "id": 1146,
+      "idUser": 334,
+      "description": "Plano de Saúde",
+      "amount": "300.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-08-23"
+    },
+    {
+      "id": 1147,
+      "idUser": 333,
+      "description": "Compras do mês",
+      "amount": "700.00",
+      "type": "saída",
+      "frequency": "recorrente",
+      "date": "2022-08-25"
+    },
+    {
+      "id": 1148,
+      "idUser": 334,
+      "description": "Cafeteira",
+      "amount": "250.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-07-26"
+    },
+    {
+      "id": 1149,
+      "idUser": 333,
+      "description": "Pizza",
+      "amount": "60.00",
+      "type": "saída",
+      "frequency": "eventual",
+      "date": "2022-07-19"
+    },
+    {
+      "id": 2,
+      "idUser": 334,
+      "description": "compra oksfoicn",
+      "amount": "12000",
+      "type": "saida",
+      "frequency": "recorrente",
+      "date": "2022-09-01"
+    },
+    {
+      "id": 1,
+      "idUser": 334,
+      "description": "sd",
+      "amount": "15000",
+      "type": "saida",
+      "frequency": "recorrente",
+      "date": "2022-08-30"
+    },
+    {
+      "id": 3,
+      "idUser": [],
+      "description": "asad",
+      "amount": "123",
+      "type": "saida",
+      "frequency": "recorrente",
+      "date": "2022-09-16"
+    },
+    {
+      "id": 4,
+      "idUser": 333,
+      "description": "compra mes ",
+      "amount": "670",
+      "type": "saida",
+      "frequency": "recorrente",
+      "date": "2022-09-30"
+    }
   ]
 }

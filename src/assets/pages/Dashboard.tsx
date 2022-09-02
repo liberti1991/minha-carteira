@@ -1,9 +1,8 @@
-import React, { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import styled from "styled-components";
 
-import { api } from "../repositories/api";
-
 import { useTheme } from "../hooks/theme";
+import { useGainsAndExpenses } from "../hooks/gainsAndExpenses";
 
 import { ContentHeader } from "../components/layout/ContentHeader";
 import { SelectInput } from "../components/SelectInput";
@@ -12,7 +11,6 @@ import { MessageBox } from "../components/dashboard/MessageBox";
 import { GraficOne } from "../components/dashboard/GraficOne";
 import { GraficTwo } from "../components/dashboard/GraficTwo";
 import { GraficthreeAndFourCard } from "../components/dashboard/GraficthreeAndFourCard";
-
 import { Loading } from "../components/layout/Loading";
 
 import { ListOfMonths } from "../utils/ListOfMonths";
@@ -25,8 +23,7 @@ import opsSvg from "../svg/ops.svg";
 export const Dashboard = () => {
   const { theme } = useTheme();
 
-  const [gains, gainsSet] = useState<any>([]);
-  const [expenses, expensesSet] = useState<any>([]);
+  const { gains, expenses } = useGainsAndExpenses();
 
   // state meses do ano
   const [monthSelected, monthSelectedSet] = useState<number>(new Date().getMonth() + 1);
@@ -54,7 +51,7 @@ export const Dashboard = () => {
         label: item,
       };
     });
-  }, []);
+  }, [gains, expenses]);
 
   // func total de entradas
   const totalGains = useMemo(() => {
@@ -69,7 +66,7 @@ export const Dashboard = () => {
     });
 
     return total;
-  }, [monthSelected, yearSelected]);
+  }, [monthSelected, yearSelected, gains]);
 
   // func total de saidas
   const totalExpenses = useMemo(() => {
@@ -84,7 +81,7 @@ export const Dashboard = () => {
     });
 
     return total;
-  }, [monthSelected, yearSelected]);
+  }, [monthSelected, yearSelected, expenses]);
 
   //func balanço
   const totalBalance = useMemo(() => {
@@ -165,7 +162,7 @@ export const Dashboard = () => {
       });
 
       let amountOutput = 0;
-      expenses.forEach((expense: { date: string | number | Date; amount: any }) => {
+      expenses?.forEach((expense: { date: string | number | Date; amount: any }) => {
         const date = new Date(expense.date);
         const expenseMonth = date.getMonth();
         const expenseYear = date.getFullYear();
@@ -189,7 +186,7 @@ export const Dashboard = () => {
     //   const currentYear = new Date().getFullYear();
     //   return (yearSelected === currentYear && item.monthNumber <= currentMonth) || yearSelected < currentYear;
     // });
-  }, [yearSelected]);
+  }, [yearSelected, gains, expenses]);
 
   // func para verificar gastos eventuais vs recorrentes
   const graficThreeExpenses = useMemo(() => {
@@ -197,7 +194,7 @@ export const Dashboard = () => {
     let amountEventual = 0;
 
     expenses
-      .filter((expense: { date: string | number | Date }) => {
+      ?.filter((expense: { date: string | number | Date }) => {
         const date = new Date(expense.date);
         const yaer = date.getFullYear();
         const month = date.getMonth() + 1;
@@ -230,7 +227,7 @@ export const Dashboard = () => {
         color: "darkorange",
       },
     ];
-  }, [monthSelected, yearSelected]);
+  }, [monthSelected, yearSelected, expenses]);
 
   // func para verificar Ganhos eventuais vs recorrentes
   const graficThreeGains = useMemo(() => {
@@ -272,7 +269,7 @@ export const Dashboard = () => {
         color: "darkorange",
       },
     ];
-  }, [monthSelected, yearSelected]);
+  }, [monthSelected, yearSelected, gains]);
 
   const changeColor = useMemo(() => {
     if (theme.title === "dark") {
@@ -287,18 +284,6 @@ export const Dashboard = () => {
       return "#19ca19";
     }
   }, [totalBalance, theme]);
-
-  useEffect(() => {
-    api
-      .get("gains")
-      .then((response) => gainsSet(response.data))
-      .catch((error) => console.log("erro:", error));
-
-    api
-      .get("expenses")
-      .then((response) => expensesSet(response.data))
-      .catch((error) => console.log("erro:", error));
-  }, []);
 
   return (
     <>

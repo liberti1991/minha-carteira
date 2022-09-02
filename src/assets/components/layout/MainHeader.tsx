@@ -6,6 +6,7 @@ import { Toggle } from "./Toggle";
 import { MdClose, MdMenu } from "react-icons/md";
 
 import { emojis } from "../../utils/emojis";
+import { useAuth } from "../../hooks/auth";
 
 interface IStatesProps {
   ToggleIsOpen: boolean;
@@ -15,6 +16,7 @@ interface IStatesProps {
 }
 
 export const MainHeader: React.FC<IStatesProps> = ({ ToggleIsOpen, handleToggleMenu, darkTheme, handleChangeTheme }) => {
+  const { name } = useAuth();
   const emoji = useMemo(() => {
     const indice = Math.floor(Math.random() * emojis.length);
     return emojis[indice];
@@ -28,7 +30,7 @@ export const MainHeader: React.FC<IStatesProps> = ({ ToggleIsOpen, handleToggleM
       </span>
       <Profile>
         <h3>Olá, {emoji}</h3>
-        <span>Rodrigo Liberti</span>
+        <span>{name}</span>
       </Profile>
     </Container>
   );

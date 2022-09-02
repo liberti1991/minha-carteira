@@ -1,11 +1,12 @@
-import React, { createContext, useContext, useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { api } from "../repositories/api";
 
 interface IAuthContext {
   logged: boolean;
   signIn(email: string, password: string): void;
   signOut(): void;
+  name: string;
+  idUser: number;
 }
 
 interface IProps {
@@ -15,27 +16,48 @@ interface IProps {
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider: React.FC<IProps> = ({ children }) => {
-  const [logged, loggedSet] = useState<boolean>(() => {
-    const isLogged = localStorage.getItem("@MinhaCarteira:logged");
+  const isLogged = localStorage.getItem("@MinhaCarteira:logged");
 
-    return !!isLogged;
-  });
+  const [user, userSet] = useState([]);
+  const [name, nameSet] = useState<any>([]);
+  const [idUser, idUserSet] = useState<any>([]);
+
+  useEffect(() => {
+    api
+      .get("user")
+      .then((response) => userSet(response.data))
+      .catch((error) => console.log("erro:", error));
+  }, []);
+
+  // const signIn = (email: string, password: string) => {
+  //   if (email === "aaa@gmail.com" && password === "aaa") {
+  //     localStorage.setItem("@MinhaCarteira:logged", "true");
+  //     loggedSet(true);
+  //   }
+  // };
 
   const signIn = (email: string, password: string) => {
-    if (email === "aaa@gmail.com" && password === "aaa") {
-      localStorage.setItem("@MinhaCarteira:logged", "true");
-      loggedSet(true);
-    } else {
-      toast("Senha ou Usuário inválidos!", { type: "warning" });
-    }
+    user.forEach((item: { email: string; password: string; idUser: number; name: string }) => {
+      if (email === item.email && password === item.password) {
+        localStorage.setItem("@MinhaCarteira:logged", "true");
+        loggedSet(true);
+        nameSet(item.name);
+        idUserSet(item.idUser);
+        return;
+      }
+    });
   };
+
+  const [logged, loggedSet] = useState<boolean>(() => {
+    return !!isLogged;
+  });
 
   const signOut = () => {
     localStorage.removeItem("@MinhaCarteira:logged");
     loggedSet(false);
   };
 
-  return <AuthContext.Provider value={{ logged, signIn, signOut }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ logged, name, idUser, signIn, signOut }}>{children}</AuthContext.Provider>;
 };
 
 function useAuth(): IAuthContext {

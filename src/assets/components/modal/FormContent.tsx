@@ -1,17 +1,20 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { uniqueId } from "lodash";
+import { toast } from "react-toastify";
+
+import { useAuth } from "../../hooks/auth";
+
+import { api } from "../../repositories/api";
+
+import { Button } from "../Button";
 
 import { ListFrequency } from "../../utils/ListFrequency";
 import { ListType } from "../../utils/ListType";
 
-import { Button } from "../Button";
-import { gains } from "../../repositories/gains";
-import { expenses } from "../../repositories/expenses";
-
 interface IFormDate {
-  id?: number ;
+  id?: number;
+  idUser?: number;
   description?: string;
   amount?: string | number;
   date?: string;
@@ -24,6 +27,8 @@ interface IModoProps {
 }
 
 export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
+  const { idUser } = useAuth();
+
   const { register, handleSubmit } = useForm({
     // defaultValues: {
     //   description: "",
@@ -34,40 +39,56 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
     // },
   });
 
-  const [newGains, newGainsSet] = useState<IFormDate[]>([...gains]);
-  const [newExpenses, newExpensesSet] = useState<IFormDate[]>([...expenses]);
-
   const addNewGainsOrExpenses = (data: IFormDate) => {
     if (typeMode === "create" && data.type === "entrada") {
-      let tempGains = [
-        ...newGains,
-        {
-          id: Number(uniqueId()),
-          description: data.description,
-          amount: data.amount,
-          type: data.type,
-          frequency: data.frequency,
-          date: data.date,
-        },
-      ];
-      console.log("Novo:", tempGains);
-      return newGainsSet(tempGains);
+      let newGains: IFormDate = {
+        id: Number(uniqueId()),
+        idUser: idUser,
+        description: data.description,
+        amount: data.amount,
+        type: data.type,
+        frequency: data.frequency,
+        date: data.date,
+      };
+
+      api
+        .post("gains", newGains, {
+          params: {
+            idUser: idUser,
+          },
+        })
+        .then((res) => {
+          if (res) toast.success("Saldo creditado com sucesso!");
+        })
+        .catch((err) => {
+          if (err) toast.warn("Erro no servidor, tente novamente!");
+        });
     } else if (typeMode === "create" && data.type === "saida") {
-      let tempExpenses = [
-        ...newExpenses,
-        {
-          id: Number(uniqueId()),
-          description: data.description,
-          amount: data.amount,
-          date: data.date,
-          type: data.type,
-          frequency: data.frequency,
-        },
-      ];
-      console.log("Novo:", tempExpenses);
-      return newExpensesSet(tempExpenses);
+      let newGains: IFormDate = {
+        id: Number(uniqueId()),
+        idUser: idUser,
+        description: data.description,
+        amount: data.amount,
+        type: data.type,
+        frequency: data.frequency,
+        date: data.date,
+      };
+
+      api
+        .post("expenses", newGains, {
+          params: {
+            idUser: idUser,
+          },
+        })
+        .then((res) => {
+          if (res) toast.success("Saldo creditado com sucesso!");
+        })
+        .catch((err) => {
+          if (err) toast.warning("Erro no servidor, tente novamente!");
+        });
     }
   };
+
   return (
     <form onSubmit={handleSubmit(addNewGainsOrExpenses)}>
       <ContainerInput>

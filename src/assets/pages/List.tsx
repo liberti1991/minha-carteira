@@ -1,15 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import { api } from "../repositories/api";
-
 import { useTheme } from "../hooks/theme";
+import { useGainsAndExpenses } from "../hooks/gainsAndExpenses";
 
 import { ContentHeader } from "../components/layout/ContentHeader";
 import { HistoryFinanceCard } from "../components/list/HistoryFinanceCard";
 import { SelectInput } from "../components/SelectInput";
-
 import { Loading } from "../components/layout/Loading";
 
 import { formatCurrency } from "../utils/formatCurrency";
@@ -23,13 +21,13 @@ interface IData {
   frequency: string;
   dateFormatted: string;
   tagColor: string;
+  type: string;
 }
 
 export const List = () => {
   const { theme } = useTheme();
 
-  const [gains, gainsSet] = useState<any>([]);
-  const [expenses, expensesSet] = useState<any>([]);
+  const { gains, expenses } = useGainsAndExpenses();
 
   //state DB
   const [data, dataSet] = useState<IData[]>([]);
@@ -90,13 +88,14 @@ export const List = () => {
         const year = date.getFullYear();
         return month === monthSelected && year === yearSelected && filterButtonSelected.includes(item.frequency);
       })
-      .map((item: { id: any; description: any; amount: any; frequency: string; date: string }) => {
+      .map((item: { id: any; description: any; amount: any; frequency: string; date: string; type: string }) => {
         return {
           id: item.id,
           description: item.description,
           amountFormatted: formatCurrency(Number(item.amount)),
           frequency: item.frequency,
           dateFormatted: formatDate(item.date),
+          type: item.type,
           tagColor:
             item.frequency === "recorrente" && theme.title === "dark"
               ? theme.colors.success
@@ -109,18 +108,7 @@ export const List = () => {
       });
     dataSet(filteredDate);
   }, [paramsRoutes, yearSelected, monthSelected, filterButtonSelected, theme]);
-
-  useEffect(() => {
-    api
-      .get("gains")
-      .then((response) => gainsSet(response.data))
-      .catch((error) => console.log("erro:", error));
-
-    api
-      .get("expenses")
-      .then((response) => expensesSet(response.data))
-      .catch((error) => console.log("erro:", error));
-  }, []);
+  console.log(data);
 
   return (
     <>
@@ -142,7 +130,7 @@ export const List = () => {
           </Filters>
           <Content>
             {data.map((item) => (
-              <HistoryFinanceCard key={item.id} id={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} />
+              <HistoryFinanceCard key={item.id} id={item.id} tagColor={item.tagColor} title={item.description} subtitle={item.dateFormatted} amount={item.amountFormatted} type={item.type} />
             ))}
           </Content>
         </>

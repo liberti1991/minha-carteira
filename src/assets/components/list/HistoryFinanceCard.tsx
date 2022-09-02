@@ -14,13 +14,14 @@ interface IHistoryFinanceCard {
   title: string;
   subtitle: string;
   amount: string;
+  type: string;
 }
 
 interface ITagProps {
   color: string;
 }
 
-export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, title, subtitle, amount }) => {
+export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, title, subtitle, amount, id, type }) => {
   const [modalRemove, modalRemoveSet] = useState(false);
   const handleModalRemove = () => modalRemoveSet(!modalRemove);
 
@@ -49,8 +50,8 @@ export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, ti
         </Modal>
       )}
       {modalRemove && (
-        <Modal handleModal={handleModalRemove} title="Excluir" >
-          <Remove title={title} amount={amount} />
+        <Modal handleModal={handleModalRemove} title="Excluir">
+          <Remove title={title} amount={amount} type={type} id={id}/>
         </Modal>
       )}
     </section>
