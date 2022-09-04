@@ -39,7 +39,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
     // },
   });
 
-  const addNewGainsOrExpenses = (data: IFormDate) => {
+  const addNewGainsOrExpenses = async (data: IFormDate) => {
     if (typeMode === "create" && data.type === "entrada") {
       let newGains: IFormDate = {
         id: Number(uniqueId()),
@@ -51,7 +51,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
         date: data.date,
       };
 
-      api
+      await api
         .post("gains", newGains, {
           params: {
             idUser: idUser,
@@ -73,8 +73,8 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
         frequency: data.frequency,
         date: data.date,
       };
-
-      api
+ 
+      await api
         .post("expenses", newGains, {
           params: {
             idUser: idUser,
@@ -87,6 +87,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
           if (err) toast.warning("Erro no servidor, tente novamente!");
         });
     }
+    // window.location.reload();
   };
 
   return (

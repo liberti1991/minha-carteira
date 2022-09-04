@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { toast } from "react-toastify";
+
+import { useAuth } from "../../hooks/auth";
+
+import { api } from "../../repositories/api";
 
 import { BsTrash } from "react-icons/bs";
 import { Button } from "../Button";
-import { api } from "../../repositories/api";
-import { toast } from "react-toastify";
-import { useAuth } from "../../hooks/auth";
 
 interface IRemoveProps {
   id: number;
@@ -15,7 +17,8 @@ interface IRemoveProps {
 
 export const Remove: React.FC<IRemoveProps> = ({ title, amount, id, type }) => {
   const { idUser } = useAuth();
-  const delet = () => {
+
+  const delet = async () => {
     let typeFormatted = "";
     if (type === "entrada") {
       typeFormatted = "gains";
@@ -23,7 +26,7 @@ export const Remove: React.FC<IRemoveProps> = ({ title, amount, id, type }) => {
       typeFormatted = "expenses";
     }
 
-    api
+   await api
       .delete(`${typeFormatted}/${id}`, {
         params: {
           idUser: idUser,
@@ -35,6 +38,7 @@ export const Remove: React.FC<IRemoveProps> = ({ title, amount, id, type }) => {
       .catch((err) => {
         if (err) toast.warn("Erro no servidor, tente novamente!");
       });
+    // window.location.reload();
   };
 
   return (

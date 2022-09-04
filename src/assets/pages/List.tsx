@@ -43,9 +43,10 @@ export const List = () => {
 
   // pega o parametro da rota do navegador && on dados do BD
   const { type } = useParams();
+  
   const paramsRoutes = useMemo(() => {
     return type === "entry-balance" ? { title: "Entradas", lineColor: "#4e41f0", date: gains } : { title: "Saídas", lineColor: "darkorange", date: expenses };
-  }, [type]);
+  }, [type, expenses, gains]);
 
   // filtra somente os anos que existem no db assim fica dinamica o select
   const years = useMemo(() => {
@@ -108,7 +109,6 @@ export const List = () => {
       });
     dataSet(filteredDate);
   }, [paramsRoutes, yearSelected, monthSelected, filterButtonSelected, theme]);
-  console.log(data);
 
   return (
     <>

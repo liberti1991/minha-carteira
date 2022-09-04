@@ -258,15 +258,6 @@
       "date": "2022-09-22"
     },
     {
-      "id": 8,
-      "idUser": 333,
-      "description": "teste",
-      "amount": "80000",
-      "type": "entrada",
-      "frequency": "recorrente",
-      "date": "2022-09-22"
-    },
-    {
       "id": 9,
       "idUser": 333,
       "description": "teste",
@@ -274,24 +265,6 @@
       "type": "entrada",
       "frequency": "recorrente",
       "date": "2022-09-22"
-    },
-    {
-      "id": 10,
-      "idUser": 333,
-      "description": "teste",
-      "amount": "80000",
-      "type": "entrada",
-      "frequency": "recorrente",
-      "date": "2022-09-22"
-    },
-    {
-      "id": 11,
-      "idUser": 334,
-      "description": "salario",
-      "amount": "9999999",
-      "type": "entrada",
-      "frequency": "recorrente",
-      "date": "2022-09-30"
     }
   ],
   "expenses": [

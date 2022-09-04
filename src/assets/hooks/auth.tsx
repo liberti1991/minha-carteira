@@ -43,7 +43,6 @@ const AuthProvider: React.FC<IProps> = ({ children }) => {
         loggedSet(true);
         nameSet(item.name);
         idUserSet(item.idUser);
-        return;
       }
     });
   };
