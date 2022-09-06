@@ -1,18 +1,4 @@
 {
-  "user": [
-    {
-      "idUser": 333,
-      "email": "teste@teste.com",
-      "password": "teste",
-      "name": "User Teste"
-    },
-    {
-      "idUser": 334,
-      "email": "edgar@teste.com",
-      "password": "edgar",
-      "name": "Edgar Elias"
-    }
-  ],
   "gains": [
     {
       "id": 110,
@@ -258,13 +244,47 @@
       "date": "2022-09-22"
     },
     {
-      "id": 9,
-      "idUser": 333,
-      "description": "teste",
-      "amount": "80000",
+      "id": 31,
+      "idUser": 334,
+      "description": "aw",
+      "amount": "123",
       "type": "entrada",
       "frequency": "recorrente",
-      "date": "2022-09-22"
+      "date": "2022-09-06"
+    },
+    {
+      "idUser": 2,
+      "email": "edgaer@teste.com",
+      "password": "edgar",
+      "name": "wer",
+      "id": 1124
+    },
+    {
+      "id": 4,
+      "idUser": 334,
+      "description": "weww",
+      "amount": "123",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-05"
+    },
+    {
+      "id": 5,
+      "idUser": 334,
+      "description": "af",
+      "amount": "1.58",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-06"
+    },
+    {
+      "id": 8,
+      "idUser": 2,
+      "description": "Salário",
+      "amount": "1300.59",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-06"
     }
   ],
   "expenses": [
@@ -753,6 +773,29 @@
       "type": "saida",
       "frequency": "recorrente",
       "date": "2022-09-30"
+    }
+  ],
+  "users": [
+    {
+      "idUser": 333,
+      "email": "rodrigo@teste.com",
+      "password": "teste",
+      "name": "Rodrigo Liberti",
+      "id": 333
+    },
+    {
+      "idUser": 334,
+      "email": "edgar@teste.com",
+      "password": "edgar",
+      "name": "Edgar Elias",
+      "id": 334
+    },
+    {
+      "idUser": 2,
+      "email": "teste@teste.com",
+      "password": "teste",
+      "name": "user",
+      "id": 335
     }
   ]
 }

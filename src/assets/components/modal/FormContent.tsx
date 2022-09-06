@@ -39,7 +39,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
     // },
   });
 
-  const addNewGainsOrExpenses = async (data: IFormDate) => {
+  const addNewGainsOrExpenses = (data: IFormDate) => {
     if (typeMode === "create" && data.type === "entrada") {
       let newGains: IFormDate = {
         id: Number(uniqueId()),
@@ -51,7 +51,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
         date: data.date,
       };
 
-      await api
+      api
         .post("gains", newGains, {
           params: {
             idUser: idUser,
@@ -73,8 +73,8 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
         frequency: data.frequency,
         date: data.date,
       };
- 
-      await api
+
+      api
         .post("expenses", newGains, {
           params: {
             idUser: idUser,
@@ -99,7 +99,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
       <AmountAndDate>
         <ContainerInput>
           <label htmlFor="amount">Valor:</label>
-          <input id="amount" type="number" maxLength={10} placeholder="R$ 2.700,00" required {...register("amount")} />
+          <input id="amount" type="number" step="any" maxLength={10} placeholder="R$ 2.700,00" required {...register("amount")} />
         </ContainerInput>
         <ContainerInput>
           <label htmlFor="date">Data:</label>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -12,30 +12,45 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 
 interface INewUserProps {
   idUser?: number;
-  email?: string;
-  password?: string;
-  name?: string;
+  email: string;
+  password: string;
+  name: string;
 }
 
 export const NewUser: React.FC = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<INewUserProps>();
+
+  const [emailDB, emailDBSet] = useState([]);
+
+  api
+    .get("users")
+    .then((res) => emailDBSet(res.data))
+    .catch((err) => console.log(err));
+
+  let newEmailBD: string[] = [];
+
+  emailDB.forEach((item: { email: string }) => {
+    newEmailBD.push(item.email);
+  });
 
   const addNewContact = (data: INewUserProps) => {
-    let NewUser: INewUserProps = {
+    let newUser: INewUserProps = {
       idUser: Number(uniqueId()),
       email: data.email,
       password: data.password,
       name: data.name,
     };
 
-    api
-      .post("user", NewUser)
-      .then((res) => {
-        if (res) toast.success("Saldo creditado com sucesso!");
-      })
-      .catch((err) => {
-        if (err) toast.warn("Erro no servidor, tente novamente!");
-      });
+    if (newEmailBD.includes(newUser.email)) {
+      toast.warn("E-mail ja cadastrado!");
+    } else {
+      api
+        .post("users", newUser)
+        .then((res) => {
+          if (res) toast.success("Usuário criado com sucesso!");
+        })
+        .catch((err) => toast.warning(err));
+    }
   };
 
   return (
@@ -53,7 +68,7 @@ export const NewUser: React.FC = () => {
           <input id="email" type="email" placeholder="teste@gmail.com" maxLength={40} required {...register("email")} />
         </ContainerInput>
         <ContainerInput>
-          <label htmlFor="password">Descrição:</label>
+          <label htmlFor="password">Senha:</label>
           <input id="password" type="password" placeholder="*******" maxLength={15} required {...register("password")} />
         </ContainerInput>
         <Button>Adicionar</Button>
