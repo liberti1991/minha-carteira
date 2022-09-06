@@ -16,8 +16,11 @@ interface INewUserProps {
   password: string;
   name: string;
 }
+interface ICloseProps {
+  handleModal(): void;
+}
 
-export const NewUser: React.FC = () => {
+export const NewUser: React.FC<ICloseProps> = ({ handleModal }) => {
   const { register, handleSubmit } = useForm<INewUserProps>();
 
   const [emailDB, emailDBSet] = useState([]);
@@ -48,6 +51,7 @@ export const NewUser: React.FC = () => {
         .post("users", newUser)
         .then((res) => {
           if (res) toast.success("Usuário criado com sucesso!");
+          handleModal();
         })
         .catch((err) => toast.warning(err));
     }

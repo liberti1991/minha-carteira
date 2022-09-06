@@ -226,24 +226,6 @@
       "date": "2022-09-10"
     },
     {
-      "id": 6,
-      "idUser": 333,
-      "description": "teste",
-      "amount": "80000",
-      "type": "entrada",
-      "frequency": "recorrente",
-      "date": "2022-09-22"
-    },
-    {
-      "id": 7,
-      "idUser": 333,
-      "description": "teste",
-      "amount": "80000",
-      "type": "entrada",
-      "frequency": "recorrente",
-      "date": "2022-09-22"
-    },
-    {
       "id": 31,
       "idUser": 334,
       "description": "aw",
@@ -282,6 +264,24 @@
       "idUser": 2,
       "description": "Salário",
       "amount": "1300.59",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-06"
+    },
+    {
+      "id": 6,
+      "idUser": 333,
+      "description": "SEFS",
+      "amount": "670",
+      "type": "entrada",
+      "frequency": "recorrente",
+      "date": "2022-09-07"
+    },
+    {
+      "id": 7,
+      "idUser": 1,
+      "description": "salario",
+      "amount": "10999",
       "type": "entrada",
       "frequency": "recorrente",
       "date": "2022-09-06"
@@ -757,15 +757,6 @@
       "date": "2022-08-30"
     },
     {
-      "id": 3,
-      "idUser": [],
-      "description": "asad",
-      "amount": "123",
-      "type": "saida",
-      "frequency": "recorrente",
-      "date": "2022-09-16"
-    },
-    {
       "id": 4,
       "idUser": 333,
       "description": "compra mes ",
@@ -773,6 +764,15 @@
       "type": "saida",
       "frequency": "recorrente",
       "date": "2022-09-30"
+    },
+    {
+      "id": 9,
+      "idUser": 1,
+      "description": "compra do mes",
+      "amount": "250",
+      "type": "saida",
+      "frequency": "recorrente",
+      "date": "2022-09-06"
     }
   ],
   "users": [
@@ -791,10 +791,10 @@
       "id": 334
     },
     {
-      "idUser": 2,
-      "email": "teste@teste.com",
+      "idUser": 1,
+      "email": "jao@teste.com",
       "password": "teste",
-      "name": "user",
+      "name": "joão jor",
       "id": 335
     }
   ]

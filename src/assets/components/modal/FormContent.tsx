@@ -24,9 +24,10 @@ interface IFormDate {
 
 interface IModoProps {
   typeMode?: string;
+  handleModal(): void;
 }
 
-export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
+export const FormContent: React.FC<IModoProps> = ({ typeMode, handleModal }) => {
   const { idUser } = useAuth();
 
   const { register, handleSubmit } = useForm({
@@ -59,6 +60,7 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
         })
         .then((res) => {
           if (res) toast.success("Saldo creditado com sucesso!");
+          handleModal();
         })
         .catch((err) => {
           if (err) toast.warn("Erro no servidor, tente novamente!");
@@ -82,12 +84,12 @@ export const FormContent: React.FC<IModoProps> = ({ typeMode }) => {
         })
         .then((res) => {
           if (res) toast.success("Saldo creditado com sucesso!");
+          handleModal();
         })
         .catch((err) => {
           if (err) toast.warning("Erro no servidor, tente novamente!");
         });
     }
-    // window.location.reload();
   };
 
   return (

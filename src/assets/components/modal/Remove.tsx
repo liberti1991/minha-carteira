@@ -13,9 +13,10 @@ interface IRemoveProps {
   title: string;
   amount: string;
   type: string;
+  handleModal(): void;
 }
 
-export const Remove: React.FC<IRemoveProps> = ({ title, amount, id, type }) => {
+export const Remove: React.FC<IRemoveProps> = ({ title, amount, id, type, handleModal }) => {
   const { idUser } = useAuth();
 
   const delet = async () => {
@@ -26,14 +27,17 @@ export const Remove: React.FC<IRemoveProps> = ({ title, amount, id, type }) => {
       typeFormatted = "expenses";
     }
 
-   await api
+    await api
       .delete(`${typeFormatted}/${id}`, {
         params: {
           idUser: idUser,
         },
       })
       .then((res) => {
-        if (res) toast.success("Deletado com sucesso!");
+        if (res) {
+          toast.success("Deletado com sucesso!");
+          handleModal();
+        }
       })
       .catch((err) => {
         if (err) toast.warn("Erro no servidor, tente novamente!");

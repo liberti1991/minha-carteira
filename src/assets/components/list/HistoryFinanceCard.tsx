@@ -46,12 +46,12 @@ export const HistoryFinanceCard: React.FC<IHistoryFinanceCard> = ({ tagColor, ti
       </Container>
       {modalEdit && (
         <Modal handleModal={handleModalEdit} title="Editar" typeMode="edicao" editText={title}>
-          <FormContent />
+          <FormContent handleModal={handleModalEdit}/>
         </Modal>
       )}
       {modalRemove && (
         <Modal handleModal={handleModalRemove} title="Excluir">
-          <Remove title={title} amount={amount} type={type} id={id}/>
+          <Remove handleModal={handleModalRemove} title={title} amount={amount} type={type} id={id}/>
         </Modal>
       )}
     </section>

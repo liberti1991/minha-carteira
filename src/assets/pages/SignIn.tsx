@@ -39,7 +39,7 @@ export const SignIn = () => {
       </Form>
       {modal && (
         <Modal handleModal={handleModal} title="Criar novo usuário">
-          <NewUser />
+          <NewUser handleModal={handleModal}/>
         </Modal>
       )}
     </Container>
