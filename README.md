@@ -22,3 +22,4 @@
 <p>Esta apicação consiste em um dashboard e controle de finanças.</p>
 
 <p>Tela inicial da aplicação aonde o usuário tem que se conectar com usuário e senha.</p>
+![Captura de tela 2022-10-18 133044](https://user-images.githubusercontent.com/93290814/196490186-d6ff8b50-2ad0-47bf-9766-4094f51666b4.png)
