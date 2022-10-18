@@ -19,13 +19,13 @@
 
 ## ✌️ Sobre a aplicação
 
-<p>Esta apicação consiste em um dashboard e controle de finanças.</p>
+Esta apicação consiste em um dashboard e controle de finanças.</br>
+Tela inicial da aplicação aonde o usuário tem que se conectar com usuário e senha.
+![Captura de tela 2022-10-18 133044](https://user-images.githubusercontent.com/93290814/196492525-eb7a88d6-5f15-405e-b5ae-670a97084518.png)
+Tela do dashboard no tema claro.
+![Captura de tela 2022-10-18 123432](https://user-images.githubusercontent.com/93290814/196492807-d7b4970b-1d92-4a19-9bd1-6530d8344bb0.png)
+Tela do dashboard no tema escuro.
+![Captura de tela 2022-10-18 123612](https://user-images.githubusercontent.com/93290814/196492871-b0274b64-002f-4980-b068-866d51b2cb08.png)
+Tela cadastramento de finanças.
+![Captura de tela 2022-10-18 123234](https://user-images.githubusercontent.com/93290814/196493006-2bc4ec1c-e8a7-45da-b6a9-7152b3a45394.png)
 
-<p>Tela inicial da aplicação aonde o usuário tem que se conectar com usuário e senha.</p>
-![Captura de tela 2022-10-18 133044](https://user-images.githubusercontent.com/93290814/196490186-d6ff8b50-2ad0-47bf-9766-4094f51666b4.png)
-<p>Tela do dashboard no tema claro.</p>
-![Captura de tela 2022-10-18 123432](https://user-images.githubusercontent.com/93290814/196490542-18f88749-f842-48e7-93ae-525a5730b20d.png)
-<p>Tela do dashboard no tema escuro.</p>
-![Captura de tela 2022-10-18 123612](https://user-images.githubusercontent.com/93290814/196490649-b1378b23-0468-41cc-8869-f8788b95574a.png)
-<p>Tela cadastramento de finanças.</p>
-![Captura de tela 2022-10-18 123234](https://user-images.githubusercontent.com/93290814/196490740-ff300963-baa7-4c15-ba72-4d78a8de0619.png)
